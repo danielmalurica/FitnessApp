@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Fitness Application</string>
+    <string name="sign_in">SIGN IN</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="register">Register</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="already_have_an_account">Already have an account</string>
+    <string name="personal_info">Personal Info</string>
+    <string name="age">Age</string>
+    <string name="weight">Weight(in KG)</string>
+    <string name="height">Height(in CM)</string>
+    <string name="save_all_data">Save all data</string>
+    <string name="admin_username">admin</string>
+    <string name="admin_password">admin</string>
+    <string name="please_select_your_gender">Please select your gender</string>
+
+    <string-array name="gender">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+</resources>
