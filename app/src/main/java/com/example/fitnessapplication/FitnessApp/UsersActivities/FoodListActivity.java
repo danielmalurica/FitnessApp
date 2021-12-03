@@ -51,6 +51,7 @@ public class FoodListActivity extends AppCompatActivity {
     private LinearLayoutManager layoutManager;
     private DividerItemDecoration dividerItemDecoration;
     private List<FoodModel> listOfFood;
+    private List<FoodNutrients> foodNutrientsList;
     private RecyclerView.Adapter adapter;
 
     @Override
@@ -61,6 +62,7 @@ public class FoodListActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recyclerView);
         listOfFood = new ArrayList<>();
+        foodNutrientsList = new ArrayList<>();
         adapter = new FoodListAdapter(getApplicationContext(), listOfFood);
 
         layoutManager = new LinearLayoutManager(getApplicationContext());
@@ -71,9 +73,17 @@ public class FoodListActivity extends AppCompatActivity {
         recyclerView.addItemDecoration(dividerItemDecoration);
         recyclerView.setAdapter(adapter);
 
-        getInfoFoodByName("cake");
+        edtFood = findViewById(R.id.edtFind);
 
 
+        btnFindFood = findViewById(R.id.search_btn);
+        btnFindFood.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getInfoFoodByName(edtFood.getText().toString());
+                Toast.makeText(getApplicationContext(), edtFood.getText().toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 
@@ -82,12 +92,13 @@ public class FoodListActivity extends AppCompatActivity {
         progressDialog.setMessage("Loading...");
         progressDialog.show();
 
-        String url = "https://api.nal.usda.gov/fdc/v1/foods/search?api_key=Tv9PgEGWmPcfjKcBtv6TJeWuYOWwHLcfrEFjHuPJ&query=biscuits";
+        String url = "https://api.nal.usda.gov/fdc/v1/foods/search?api_key=Tv9PgEGWmPcfjKcBtv6TJeWuYOWwHLcfrEFjHuPJ&query=" +foodName;
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
+                    listOfFood.clear();
                     JSONArray foodList = response.getJSONArray("foods");
                     for(int i=0; i < foodList.length(); i++){
                         JSONObject food = (JSONObject) foodList.get(i);
@@ -97,7 +108,7 @@ public class FoodListActivity extends AppCompatActivity {
                         foodModel.setFoodCategory(food.getString("foodCategory"));
                         //foodModel.setServingSize(food.getInt("servingSize"));
                         //foodModel.setServingSizeUnit(food.getString("servingSizeUnit"));
-                        /*
+
                         JSONArray nutrientsList = food.getJSONArray("foodNutrients");
                         for(int j=0; j<nutrientsList.length(); j++){
                             JSONObject nutrient = (JSONObject) nutrientsList.get(j);
@@ -106,11 +117,13 @@ public class FoodListActivity extends AppCompatActivity {
                             foodNutrients.setNutrientName(nutrient.getString("nutrientName"));
                             foodNutrients.setNutrientUnit(nutrient.getString("unitName"));
                             foodNutrients.setValue(nutrient.getDouble("value"));
-                            listOfNutrients.add(foodNutrients);
+                            foodNutrientsList.add(foodNutrients);
                         }
-                           */
+
+                        foodModel.setFoodNutrients(foodNutrientsList);
+
                         listOfFood.add(foodModel);
-                        //Toast.makeText(context, foodModel.toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), foodNutrientsList.toString(), Toast.LENGTH_SHORT).show();
 
 
                     }

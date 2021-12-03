@@ -35,7 +35,7 @@ public class ListAdapter extends ArrayAdapter<FoodModel> {
 
         mealName.setText(foodModel.getDescription());
         mealCategory.setText(foodModel.getFoodCategory());
-       // noOfCal.setText(foodModel.get);
+        noOfCal.setText(foodModel.getFoodNutrients().toString());
 
         return super.getView(position, convertView, parent);
     }

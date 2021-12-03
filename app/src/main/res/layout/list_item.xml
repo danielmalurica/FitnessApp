@@ -34,14 +34,14 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/numberOfCal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/numberOfCal"
-            android:text="NbOfCal"
-            android:textStyle="bold"
-            android:textSize="15sp"
             android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"/>
+            android:layout_centerVertical="true"
+            android:text="NbOfCal"
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
     </RelativeLayout>
 </LinearLayout>
