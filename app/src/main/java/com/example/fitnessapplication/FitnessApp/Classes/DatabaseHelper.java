@@ -47,8 +47,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public boolean addUser(User user) {
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COLUMN_USER_USERNAME, user.getUsername());
-        contentValues.put(COLUMN_USER_PASSWORD, user.getPassword());
         contentValues.put(COLUMN_USER_AGE, user.getAge());
         contentValues.put(COLUMN_USER_WEIGHT, user.getWeight());
         contentValues.put(COLUMN_USER_HEIGHT, user.getHeight());

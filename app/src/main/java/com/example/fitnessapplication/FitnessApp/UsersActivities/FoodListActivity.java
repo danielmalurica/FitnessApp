@@ -42,7 +42,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FoodListActivity extends AppCompatActivity {
+public class FoodListActivity extends AppCompatActivity implements FoodListAdapter.OnItemClickListener {
 
     EditText edtFood;
     Button btnFindFood;
@@ -63,7 +63,7 @@ public class FoodListActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         listOfFood = new ArrayList<>();
         foodNutrientsList = new ArrayList<>();
-        adapter = new FoodListAdapter(getApplicationContext(), listOfFood);
+        //adapter = new FoodListAdapter(getApplicationContext(), listOfFood, this);
 
         layoutManager = new LinearLayoutManager(getApplicationContext());
         layoutManager.setOrientation(RecyclerView.VERTICAL);
@@ -123,7 +123,7 @@ public class FoodListActivity extends AppCompatActivity {
                         foodModel.setFoodNutrients(foodNutrientsList);
 
                         listOfFood.add(foodModel);
-                        Toast.makeText(getApplicationContext(), foodNutrientsList.toString(), Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(), foodNutrientsList.toString(), Toast.LENGTH_SHORT).show();
 
 
                     }
@@ -142,5 +142,12 @@ public class FoodListActivity extends AppCompatActivity {
             }
         });
         MySingleton.getInstance(FoodListActivity.this).addToRequestQueue(request);
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        listOfFood.get(position);
+        Intent detailIntent = new Intent(this, DetailedFoodActivity.class);
+        startActivity(detailIntent);
     }
 }

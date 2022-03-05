@@ -1,103 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#FFEB3B"
-    android:padding="10dp"
     tools:context=".FitnessApp.Login.OtherDetailsActivity">
 
-
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/personal_info"
-        android:textColor="@color/black"
-        android:textSize="50dp"
-        android:textStyle="bold"
-        android:layout_marginTop="60dp"
-        android:layout_marginBottom="50dp"
-        />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#FFEB3B"
+        android:padding="10dp">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:id="@+id/edtAge"
-        android:hint="@string/age"
-        android:textColorHint="@color/black"
-        android:textColor="@color/black"
-        android:inputType="number"
-        android:textSize="25dp"
-        android:background="@drawable/edittext_background"
-        android:layout_marginBottom="30dp"
-        android:paddingLeft="20dp"
-        />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="60dp"
+            android:layout_marginBottom="50dp"
+            android:gravity="center"
+            android:text="@string/personal_info"
+            android:textColor="@color/black"
+            android:textSize="50dp"
+            android:textStyle="bold" />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:id="@+id/edtWeight"
-        android:hint="@string/weight"
-        android:inputType="number"
-        android:textColorHint="@color/black"
-        android:textColor="@color/black"
-        android:textSize="25dp"
-        android:background="@drawable/edittext_background"
-        android:layout_marginBottom="30dp"
-        android:paddingLeft="20dp"
-        />
+        <EditText
+            android:id="@+id/edtName"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/edittext_background"
+            android:hint="@string/name"
+            android:inputType="textCapSentences|textPersonName"
+            android:paddingLeft="20dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textSize="25dp" />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:id="@+id/edtHeight"
-        android:hint="@string/height"
-        android:inputType="number"
-        android:textColorHint="@color/black"
-        android:textColor="@color/black"
-        android:textSize="25dp"
-        android:background="@drawable/edittext_background"
-        android:layout_marginBottom="30dp"
-        android:paddingLeft="20dp"
-        />
+        <EditText
+            android:id="@+id/edtAge"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/edittext_background"
+            android:hint="@string/age"
+            android:inputType="number"
+            android:paddingLeft="20dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textSize="25dp" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="@string/please_select_your_gender"
-        android:textColor="@color/black"
-        android:textSize="25dp"
-        android:textAlignment="center"
-        android:paddingLeft="20dp"/>
+        <EditText
+            android:id="@+id/edtWeight"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/edittext_background"
+            android:hint="@string/weight"
+            android:inputType="number"
+            android:paddingLeft="20dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textSize="25dp" />
 
-    <Spinner
-        android:id="@+id/spinnerGender"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:textSize="25dp"
-        android:dropDownSelector="@color/black"
-        android:textColor="@color/black"
-        android:background="@drawable/edittext_background"
-        android:paddingLeft="20dp"
-        android:layout_marginBottom="30dp"/>
+        <EditText
+            android:id="@+id/edtHeight"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/edittext_background"
+            android:hint="@string/height"
+            android:inputType="number"
+            android:paddingLeft="20dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textSize="25dp" />
 
-    <Button
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/rounded_button_black"
-        android:text="@string/save_all_data"
-        android:id="@+id/saveData"
-        android:textSize="22dp"
-        android:textStyle="bold"
-        android:textColor="#FFEB3B"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:paddingLeft="20dp"
+            android:text="@string/please_select_your_gender"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="25dp" />
 
+        <Spinner
+            android:id="@+id/spinnerGender"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/edittext_background"
+            android:dropDownSelector="@color/black"
+            android:paddingLeft="20dp"
+            android:textColor="@color/black"
+            android:textSize="25dp" />
 
+        <Button
+            android:id="@+id/saveData"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/rounded_button_black"
+            android:text="@string/save_all_data"
+            android:textColor="#FFEB3B"
+            android:textSize="22dp"
+            android:textStyle="bold" />
 
+    </LinearLayout>
 
-</LinearLayout>
+</ScrollView>

@@ -1,5 +1,6 @@
 package com.example.fitnessapplication.FitnessApp.Login;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -19,22 +20,40 @@ import android.widget.Toast;
 import com.example.fitnessapplication.FitnessApp.Classes.DatabaseHelper;
 import com.example.fitnessapplication.FitnessApp.Classes.User;
 import com.example.fitnessapplication.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class OtherDetailsActivity extends AppCompatActivity {
     String username, password;
-    TextView textViewAge, textViewWeight, textViewHeight;
+    TextView textViewName, textViewAge, textViewWeight, textViewHeight;
     Button saveData;
     Spinner spinner;
+
+    String userId;
+    private FirebaseFirestore firebaseFirestore;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_other_details);
 
+        textViewName = findViewById(R.id.edtName);
         textViewAge = findViewById(R.id.edtAge);
         textViewWeight = findViewById(R.id.edtWeight);
         textViewHeight = findViewById(R.id.edtHeight);
         spinner = findViewById(R.id.spinnerGender);
+
+        mAuth = FirebaseAuth.getInstance();
+        firebaseFirestore = FirebaseFirestore.getInstance();
+        userId = mAuth.getCurrentUser().getUid();
+
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.gender, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -62,6 +81,12 @@ public class OtherDetailsActivity extends AppCompatActivity {
         saveData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(textViewName.getText().toString().isEmpty()) {
+                    textViewName.setError("Name is missing");
+                    textViewName.requestFocus();
+                    return;
+                }
+
                 if(textViewAge.getText().toString().isEmpty()) {
                     textViewAge.setError("Age is missing");
                     textViewAge.requestFocus();
@@ -80,17 +105,32 @@ public class OtherDetailsActivity extends AppCompatActivity {
                     return;
                 }
 
-                User user = new User(-1, username, password, Integer.parseInt(textViewAge.getText().toString()), Integer.parseInt(textViewWeight.getText().toString()), Integer.parseInt(textViewHeight.getText().toString()), spinner.getSelectedItem().toString());
+                User user = new User(userId, username, password, Integer.parseInt(textViewAge.getText().toString()), Integer.parseInt(textViewWeight.getText().toString()), Integer.parseInt(textViewHeight.getText().toString()), spinner.getSelectedItem().toString());
+                Map<String, Object> userOtherInfo = new HashMap<>();
+                userOtherInfo.put("uid", user.getId());
+                userOtherInfo.put("name", user.getName());
+                userOtherInfo.put("age", user.getAge());
+                userOtherInfo.put("weight", user.getWeight());
+                userOtherInfo.put("height", user.getHeight());
+                userOtherInfo.put("gender", user.getGender());
 
-                DatabaseHelper databaseHelper = new DatabaseHelper(OtherDetailsActivity.this);
-                boolean addedSuccessfully = databaseHelper.addUser(user);
-                if(addedSuccessfully){
-                    Toast.makeText(OtherDetailsActivity.this, "Informations saved!", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(OtherDetailsActivity.this, "Error", Toast.LENGTH_SHORT).show();
-                }
 
-                startActivity(new Intent(OtherDetailsActivity.this, SignInActivity.class));
+                firebaseFirestore.collection("users")
+                        .document(userId)
+                        .set(userOtherInfo)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                Toast.makeText(OtherDetailsActivity.this, "Data added!", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(OtherDetailsActivity.this, "Error!", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
             }
         });
 

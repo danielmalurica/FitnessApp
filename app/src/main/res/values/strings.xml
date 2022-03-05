@@ -3,7 +3,7 @@
     <string name="sign_in">SIGN IN</string>
     <string name="sign_up">SIGN UP</string>
     <string name="register">Register</string>
-    <string name="username">Username</string>
+    <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="already_have_an_account">Already have an account</string>
@@ -15,6 +15,7 @@
     <string name="admin_username">admin</string>
     <string name="admin_password">admin</string>
     <string name="please_select_your_gender">Please select your gender</string>
+    <string name="name">Name</string>
 
     <string-array name="gender">
         <item>Male</item>

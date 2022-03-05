@@ -1,5 +1,6 @@
 package com.example.fitnessapplication.FitnessApp.UsersActivities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -9,29 +10,43 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.fitnessapplication.FitnessApp.Classes.DatabaseHelper;
+import com.example.fitnessapplication.FitnessApp.Classes.User;
 import com.example.fitnessapplication.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class BmiCalculatorActivity extends AppCompatActivity {
-    int userId;
+    private static final String TAG = BmiCalculatorActivity.class.getName();
     double bmi, userWeight, userHeight;
     int userAge;
     String userGender;
     String bmiString;
-    DatabaseHelper databaseHelper;
     TextView currentHeight, currentWeight, currentAge;
     ImageView imgIncrementWeight, imgDecrementWeight;
     ImageView imgIncrementAge, imgDecrementAge;
     RelativeLayout rltMale, rltFemale;
     SeekBar heightSeekbar;
     Button calculateBmi;
+
+    String userId;
+    private FirebaseFirestore firebaseFirestore;
+    private FirebaseAuth mAuth;
+    private DocumentReference documentReference;
+    User userData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,51 +65,44 @@ public class BmiCalculatorActivity extends AppCompatActivity {
         heightSeekbar = findViewById(R.id.seekbarForHeight);
         calculateBmi = findViewById(R.id.calculateBmi);
 
-        databaseHelper = new DatabaseHelper(BmiCalculatorActivity.this);
 
-        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("userDetails", Context.MODE_PRIVATE);
-        userId = sharedPreferences.getInt("userId", -1);
+        mAuth = FirebaseAuth.getInstance();
+        firebaseFirestore = FirebaseFirestore.getInstance();
+        userId = mAuth.getCurrentUser().getUid();
 
-
-        Cursor cursor = databaseHelper.findDataForBmi(userId);
-        if(cursor.moveToFirst()) {
-            do {
-                userAge = cursor.getInt(3);
-                userWeight = cursor.getDouble(4);
-                userHeight = cursor.getDouble(5);
-                userGender = cursor.getString(6);
-            } while(cursor.moveToNext());
-        }
-
-        if(userGender.equals("Male")){
-            rltMale.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.maleandfemalefocus));
-            rltFemale.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.maleandfemalenotfocus));
-        } else if(userGender.equals("Female")){
-            rltFemale.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.maleandfemalefocus));
-            rltMale.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.maleandfemalenotfocus));
-        }
-
-        rltMale.setOnClickListener(new View.OnClickListener() {
+        documentReference = firebaseFirestore.collection("users").document(userId);
+        documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
-            public void onClick(View v) {
-                rltMale.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.maleandfemalefocus));
-                rltFemale.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.maleandfemalenotfocus));
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()){
+                    DocumentSnapshot documentSnapshot = task.getResult();
+                    if(documentSnapshot.exists()) {
+                        userData = documentSnapshot.toObject(User.class);
+                        userGender = userData.getGender();
+
+                        if(userGender.equals("Male")){
+                            rltMale.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.maleandfemalefocus));
+                            rltFemale.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.maleandfemalenotfocus));
+                        } else if(userGender.equals("Female")){
+                            rltFemale.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.maleandfemalefocus));
+                            rltMale.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.maleandfemalenotfocus));
+                        }
+
+                        currentHeight.setText(Double.toString(userData.getHeight()));
+                        currentWeight.setText(Double.toString(userData.getWeight()));
+                        currentAge.setText(Integer.toString(userData.getAge()));
+                    } else {
+                        Log.d(TAG, "No such document");
+                        Toast.makeText(BmiCalculatorActivity.this, "No document", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                    Toast.makeText(BmiCalculatorActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
-        rltFemale.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                rltFemale.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.maleandfemalefocus));
-                rltMale.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.maleandfemalenotfocus));
-            }
-        });
 
-        bmi = calculateBmi(userWeight, userHeight, bmi);
-
-        currentHeight.setText(Double.toString(userHeight));
-        currentWeight.setText(Double.toString(userWeight));
-        currentAge.setText(Integer.toString(userAge));
 
         heightSeekbar.setMax(250);
         heightSeekbar.setProgress((int)userHeight);
@@ -119,7 +127,8 @@ public class BmiCalculatorActivity extends AppCompatActivity {
         imgIncrementWeight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                userWeight += 1;
+                userWeight = Double.parseDouble(currentWeight.getText().toString());
+                userWeight+= 1;
                 currentWeight.setText(Double.toString(userWeight));
             }
         });
@@ -127,6 +136,7 @@ public class BmiCalculatorActivity extends AppCompatActivity {
         imgDecrementWeight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                userWeight = Double.parseDouble(currentWeight.getText().toString());
                 userWeight -= 1;
                 currentWeight.setText(Double.toString(userWeight));
             }
@@ -135,6 +145,7 @@ public class BmiCalculatorActivity extends AppCompatActivity {
         imgIncrementAge.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                userAge = Integer.parseInt(currentAge.getText().toString());
                 userAge += 1;
                 currentAge.setText(Integer.toString(userAge));
             }
@@ -143,6 +154,7 @@ public class BmiCalculatorActivity extends AppCompatActivity {
         imgDecrementAge.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                userAge = Integer.parseInt(currentAge.getText().toString());
                 userAge -= 1;
                 currentAge.setText(Integer.toString(userAge));
             }
@@ -151,13 +163,17 @@ public class BmiCalculatorActivity extends AppCompatActivity {
         calculateBmi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                databaseHelper.updateDataForBmi(userId, userAge, userWeight, userHeight, userGender);
                 bmiString = Double.toString(bmi);
+                Toast.makeText(BmiCalculatorActivity.this, bmiString, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), BmiResultActivity.class);
                 intent.putExtra("bmiResult", bmiString);
                 startActivity(intent);
             }
         });
+
+        userHeight = Double.parseDouble(currentHeight.getText().toString());
+        userWeight = Double.parseDouble(currentWeight.getText().toString());
+        bmi = calculateBmi(userWeight, userHeight, bmi);
 
     }
 

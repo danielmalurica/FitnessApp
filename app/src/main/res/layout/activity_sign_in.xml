@@ -9,6 +9,7 @@
     android:orientation="vertical"
     tools:context=".FitnessApp.Login.SignInActivity">
 
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,18 +24,17 @@
         />
 
     <EditText
+        android:id="@+id/edtEmail"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:id="@+id/edtUsername"
-        android:hint="@string/username"
-        android:textColorHint="@color/black"
-        android:textColor="@color/black"
-        android:textSize="25dp"
-        android:inputType="textPersonName"
-        android:background="@drawable/edittext_background"
         android:layout_marginBottom="30dp"
+        android:background="@drawable/edittext_background"
+        android:hint="@string/email"
+        android:inputType="textPersonName"
         android:paddingLeft="20dp"
-        />
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textSize="25dp" />
 
     <EditText
         android:layout_width="match_parent"

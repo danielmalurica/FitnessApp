@@ -8,12 +8,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.fitnessapplication.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class BmiResultActivity extends AppCompatActivity {
+
     String bmiResultString;
     double bmiResult;
     TextView twBmiResult;
     ImageView imgResult;
+
+    String userId;
+    private FirebaseFirestore firebaseFirestore;
+    private FirebaseAuth mAuth;
+    private DocumentReference documentReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +31,10 @@ public class BmiResultActivity extends AppCompatActivity {
 
         twBmiResult = findViewById(R.id.bmiResult);
         imgResult = findViewById(R.id.imgViewResult);
+
+        mAuth = FirebaseAuth.getInstance();
+        firebaseFirestore = FirebaseFirestore.getInstance();
+        userId = mAuth.getCurrentUser().getUid();
 
         bmiResultString = getIntent().getStringExtra("bmiResult");
         bmiResult = Double.parseDouble(bmiResultString);

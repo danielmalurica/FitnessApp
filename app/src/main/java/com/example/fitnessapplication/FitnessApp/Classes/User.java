@@ -1,18 +1,18 @@
 package com.example.fitnessapplication.FitnessApp.Classes;
 
 public class User {
-    private int id;
-    private String username;
-    private String password;
+    private String id;
+    private String email;
+    private String name;
     private  int age;
     private int weight;
     private int height;
     private String gender;
 
-    public User(int id, String username, String password, int age, int weight, int height, String gender) {
+    public User(String id, String email, String name, int age, int weight, int height, String gender) {
         this.id = id;
-        this.username = username;
-        this.password = password;
+        this.email = email;
+        this.name = name;
         this.age = age;
         this.weight = weight;
         this.height = height;
@@ -22,28 +22,28 @@ public class User {
     public User() {
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public String getName() {
+        return name;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getAge() {

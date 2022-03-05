@@ -70,9 +70,9 @@
             android:layout_width="170px"
             android:layout_height="170px"
             android:layout_above="@+id/textMale"
+            android:layout_centerInParent="true"
             android:layout_marginBottom="20dp"
-            android:src="@drawable/female"
-            android:layout_centerInParent="true">
+            android:src="@drawable/female">
 
         </ImageView>
 
