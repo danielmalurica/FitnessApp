@@ -1,4 +1,4 @@
-package com.example.fitnessapplication.FitnessApp.UsersActivities;
+package com.example.fitnessapplication.FitnessApp.UsersActivities.BMI;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,7 +16,7 @@ public class BmiResultActivity extends AppCompatActivity {
 
     String bmiResultString;
     double bmiResult;
-    TextView twBmiResult;
+    TextView twBmiResult, twBmiNumber;
     ImageView imgResult;
 
     String userId;
@@ -29,6 +29,7 @@ public class BmiResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bmi_result);
 
+        twBmiNumber =findViewById(R.id.resultBmi);
         twBmiResult = findViewById(R.id.bmiResult);
         imgResult = findViewById(R.id.imgViewResult);
 
@@ -37,6 +38,7 @@ public class BmiResultActivity extends AppCompatActivity {
         userId = mAuth.getCurrentUser().getUid();
 
         bmiResultString = getIntent().getStringExtra("bmiResult");
+        twBmiNumber.setText(bmiResultString);
         bmiResult = Double.parseDouble(bmiResultString);
 
         if (bmiResult < 16) {
@@ -51,9 +53,19 @@ public class BmiResultActivity extends AppCompatActivity {
         } else if (bmiResult > 18.5 && bmiResult < 25) {
             twBmiResult.setText("Normal");
             imgResult.setImageResource(R.drawable.ok);
-        } else if (bmiResult > 25 && bmiResult < 29.4) {
+        } else if (bmiResult > 25 && bmiResult < 30) {
             twBmiResult.setText("Overweight");
             imgResult.setImageResource(R.drawable.warning);
+        } else if (bmiResult > 30 && bmiResult < 35) {
+            twBmiResult.setText("Obese Class I");
+            imgResult.setImageResource(R.drawable.crosss);
+        } else if (bmiResult > 35 && bmiResult < 40) {
+            twBmiResult.setText("Obese Class II");
+            imgResult.setImageResource(R.drawable.crosss);
+        } else if (bmiResult > 40) {
+            twBmiResult.setText("Obese Class III");
+            imgResult.setImageResource(R.drawable.crosss);
         }
+
     }
 }

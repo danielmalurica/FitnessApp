@@ -8,9 +8,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
-import com.example.fitnessapplication.FitnessApp.UsersActivities.BmiCalculatorActivity;
+import com.example.fitnessapplication.FitnessApp.UsersActivities.BMI.BmiUpdateDataActivity;
 import com.example.fitnessapplication.R;
 
 public class AdminHomepageActivity extends AppCompatActivity {
@@ -30,7 +29,7 @@ public class AdminHomepageActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), BmiCalculatorActivity.class));
+                startActivity(new Intent(getApplicationContext(), BmiUpdateDataActivity.class));
             }
         });
     }

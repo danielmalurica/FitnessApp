@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_color"
-    tools:context=".FitnessApp.UsersActivities.BmiCalculatorActivity">
+    tools:context=".FitnessApp.UsersActivities.BMI.BmiUpdateDataActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -283,16 +283,16 @@
 
     </RelativeLayout>
 
-   <Button
-       android:layout_width="match_parent"
-       android:layout_height="40dp"
-       android:id="@+id/calculateBmi"
-       android:layout_alignParentBottom="true"
-       android:textSize="15sp"
-       android:layout_marginBottom="15dp"
-       android:text="Calculate my BMI"
-       android:background="@drawable/rounded_button_orange"
-       android:layout_marginLeft="20dp"
-       android:layout_marginRight="20dp"/>
+    <Button
+        android:id="@+id/calculateBmi"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/rounded_button_orange"
+        android:text="Calculate my BMI"
+        android:textSize="15sp" />
 
 </RelativeLayout>

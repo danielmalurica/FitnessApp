@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_color"
-    tools:context=".FitnessApp.UsersActivities.BmiResultActivity">
+    tools:context=".FitnessApp.UsersActivities.BMI.BmiResultActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -29,15 +29,15 @@
             android:background="#383838">
 
             <TextView
+                android:id="@+id/resultBmi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="50"
-                android:id="@+id/resultBmi"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                android:layout_marginTop="10dp"
                 android:layout_centerHorizontal="true"
-                android:textSize="50dp"/>
+                android:layout_marginTop="10dp"
+                android:text="50"
+                android:textColor="@color/white"
+                android:textSize="50dp"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"

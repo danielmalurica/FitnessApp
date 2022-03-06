@@ -147,7 +147,5 @@ public class FoodListActivity extends AppCompatActivity implements FoodListAdapt
     @Override
     public void onItemClick(int position) {
         listOfFood.get(position);
-        Intent detailIntent = new Intent(this, DetailedFoodActivity.class);
-        startActivity(detailIntent);
     }
 }

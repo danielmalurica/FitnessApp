@@ -35,7 +35,7 @@ public class OtherDetailsActivity extends AppCompatActivity {
     Button saveData;
     Spinner spinner;
 
-    String userId;
+    String userId, userEmail;
     private FirebaseFirestore firebaseFirestore;
     private FirebaseAuth mAuth;
 
@@ -53,7 +53,7 @@ public class OtherDetailsActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
         userId = mAuth.getCurrentUser().getUid();
-
+        userEmail = mAuth.getCurrentUser().getEmail();
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.gender, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -105,10 +105,11 @@ public class OtherDetailsActivity extends AppCompatActivity {
                     return;
                 }
 
-                User user = new User(userId, username, password, Integer.parseInt(textViewAge.getText().toString()), Integer.parseInt(textViewWeight.getText().toString()), Integer.parseInt(textViewHeight.getText().toString()), spinner.getSelectedItem().toString());
+                User user = new User(userId, userEmail, textViewName.getText().toString(), Integer.parseInt(textViewAge.getText().toString()), Integer.parseInt(textViewWeight.getText().toString()), Integer.parseInt(textViewHeight.getText().toString()), spinner.getSelectedItem().toString());
                 Map<String, Object> userOtherInfo = new HashMap<>();
                 userOtherInfo.put("uid", user.getId());
                 userOtherInfo.put("name", user.getName());
+                userOtherInfo.put("email", user.getEmail());
                 userOtherInfo.put("age", user.getAge());
                 userOtherInfo.put("weight", user.getWeight());
                 userOtherInfo.put("height", user.getHeight());

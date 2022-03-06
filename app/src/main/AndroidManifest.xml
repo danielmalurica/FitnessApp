@@ -11,9 +11,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FitnessApplication">
-        <activity android:name=".FitnessApp.UsersActivities.FoodListActivity"></activity>
-        <activity android:name=".FitnessApp.UsersActivities.BmiResultActivity" />
-        <activity android:name=".FitnessApp.UsersActivities.BmiCalculatorActivity" />
+        <activity
+            android:name=".FitnessApp.UsersActivities.FoodDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FitnessApp.UsersActivities.SearchFoodActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FitnessApp.UsersActivities.BMI.BmiUserDataActivity"
+            android:exported="false" />
+        <activity android:name=".FitnessApp.UsersActivities.FoodListActivity" />
+        <activity android:name=".FitnessApp.UsersActivities.BMI.BmiResultActivity" />
+        <activity android:name=".FitnessApp.UsersActivities.BMI.BmiUpdateDataActivity" />
         <activity android:name=".FitnessApp.UsersActivities.UserHomepageActivity" />
         <activity android:name=".FitnessApp.AdminPanel.AdminHomepageActivity" />
         <activity android:name=".FitnessApp.Login.OtherDetailsActivity" />

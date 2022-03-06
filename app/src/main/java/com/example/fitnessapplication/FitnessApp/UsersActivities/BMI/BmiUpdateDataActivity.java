@@ -1,14 +1,10 @@
-package com.example.fitnessapplication.FitnessApp.UsersActivities;
+package com.example.fitnessapplication.FitnessApp.UsersActivities.BMI;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,7 +15,6 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.fitnessapplication.FitnessApp.Classes.DatabaseHelper;
 import com.example.fitnessapplication.FitnessApp.Classes.User;
 import com.example.fitnessapplication.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -29,8 +24,10 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class BmiCalculatorActivity extends AppCompatActivity {
-    private static final String TAG = BmiCalculatorActivity.class.getName();
+import java.text.DecimalFormat;
+
+public class BmiUpdateDataActivity extends AppCompatActivity {
+    private static final String TAG = BmiUpdateDataActivity.class.getName();
     double bmi, userWeight, userHeight;
     int userAge;
     String userGender;
@@ -47,11 +44,12 @@ public class BmiCalculatorActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private DocumentReference documentReference;
     User userData;
+    private static final DecimalFormat df = new DecimalFormat("0.00");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bmi_calculator);
+        setContentView(R.layout.activity_bmi_updatedata);
 
         currentWeight = findViewById(R.id.currentWeight);
         currentHeight = findViewById(R.id.currentHeight);
@@ -69,6 +67,7 @@ public class BmiCalculatorActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
         userId = mAuth.getCurrentUser().getUid();
+        userData = new User();
 
         documentReference = firebaseFirestore.collection("users").document(userId);
         documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -93,19 +92,18 @@ public class BmiCalculatorActivity extends AppCompatActivity {
                         currentAge.setText(Integer.toString(userData.getAge()));
                     } else {
                         Log.d(TAG, "No such document");
-                        Toast.makeText(BmiCalculatorActivity.this, "No document", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(BmiUpdateDataActivity.this, "No document", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     Log.d(TAG, "get failed with ", task.getException());
-                    Toast.makeText(BmiCalculatorActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(BmiUpdateDataActivity.this, "Error", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
 
-
         heightSeekbar.setMax(250);
-        heightSeekbar.setProgress((int)userHeight);
+        heightSeekbar.setProgress(Integer.parseInt(currentHeight.getText().toString()));
         heightSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -163,24 +161,21 @@ public class BmiCalculatorActivity extends AppCompatActivity {
         calculateBmi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                userHeight = Double.parseDouble(currentHeight.getText().toString());
+                userWeight = Double.parseDouble(currentWeight.getText().toString());
+                bmi = calculateBmi(userWeight, userHeight, bmi);
                 bmiString = Double.toString(bmi);
-                Toast.makeText(BmiCalculatorActivity.this, bmiString, Toast.LENGTH_SHORT).show();
+
                 Intent intent = new Intent(getApplicationContext(), BmiResultActivity.class);
                 intent.putExtra("bmiResult", bmiString);
                 startActivity(intent);
             }
         });
-
-        userHeight = Double.parseDouble(currentHeight.getText().toString());
-        userWeight = Double.parseDouble(currentWeight.getText().toString());
-        bmi = calculateBmi(userWeight, userHeight, bmi);
-
     }
-
 
     public double calculateBmi(double weight, double height, double bm) {
         double height2 = height / 100;
-        bm = weight / (height2 * height2);
+        bm = Double.parseDouble(df.format(weight / (height2 * height2)));
         return bm;
     }
 }
