@@ -4,6 +4,7 @@ package com.example.fitnessapplication.FitnessApp.Classes;
 import java.util.List;
 
 public class FoodModel {
+    private String foodId;
     private String description;
     private String ingredients;
     private String foodCategory;
@@ -11,7 +12,8 @@ public class FoodModel {
     private String servingSizeUnit;
     private List<FoodNutrients> foodNutrients;
 
-    public FoodModel(String description, String ingredients, String foodCategory, double servingSize, String servingSizeUnit, List<FoodNutrients> foodNutrients) {
+    public FoodModel(String foodId,String description, String ingredients, String foodCategory, double servingSize, String servingSizeUnit, List<FoodNutrients> foodNutrients) {
+        this.foodId = foodId;
         this.description = description;
         this.ingredients = ingredients;
         this.foodCategory = foodCategory;
@@ -21,6 +23,14 @@ public class FoodModel {
     }
 
     public FoodModel() {
+    }
+
+    public String getFoodId() {
+        return foodId;
+    }
+
+    public void setFoodId(String foodId) {
+        this.foodId = foodId;
     }
 
     public String getDescription() {

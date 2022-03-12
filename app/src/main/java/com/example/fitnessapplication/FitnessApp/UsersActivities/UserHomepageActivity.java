@@ -40,7 +40,7 @@ public class UserHomepageActivity extends AppCompatActivity {
         buttonJson.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), FoodListActivity.class));
+                startActivity(new Intent(getApplicationContext(), SearchFoodActivity.class));
             }
         });
         textView = findViewById(R.id.textView3);

@@ -24,15 +24,15 @@
             android:layout_height="wrap_content"
             android:width="0dp"
             android:layout_weight="15"
-            android:text="Find food"/>
+            android:text="Find food"
+            android:id="@+id/findFood"/>
 
     </LinearLayout>
 
-    <androidx.fragment.app.FragmentContainerView
+
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/fragment_list"
-        android:name="com.example.fitnessapplication.FitnessApp.UsersActivities.Fragments.FoodListFragment"/>
-
+        android:id="@+id/foodList"/>
 
 </LinearLayout>

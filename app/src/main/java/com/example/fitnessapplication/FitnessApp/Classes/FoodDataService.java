@@ -8,10 +8,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.fitnessapplication.FitnessApp.UsersActivities.RecycleViewAdapter;
+import com.example.fitnessapplication.FitnessApp.UsersActivities.SearchFoodActivity;
+import com.example.fitnessapplication.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,49 +35,67 @@ public class FoodDataService {
 
     public interface VolleyResponseListener {
         void onError(String message);
-        void onResponse(String foodDescripton);
+        void onResponse(List<FoodModel> food);
     }
 
-    public void getFoodName(String foodName, VolleyResponseListener volleyResponseListener) {
-        //RequestQueue queue = MySingleton.getInstance(FoodListActivity.this).getRequestQueue();
+    public void getFoodByName(String foodName, VolleyResponseListener volleyResponseListener) {
+        String url = context.getString(R.string.URL_FOR_FOOD) + foodName;
 
-        String url = "https://api.nal.usda.gov/fdc/v1/foods/search?api_key=Tv9PgEGWmPcfjKcBtv6TJeWuYOWwHLcfrEFjHuPJ&query=" + foodName;
+        List<FoodModel> listOfFoods = new ArrayList<>();
+        List<FoodNutrients> listOfNutrients = new ArrayList<>();
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-                   // JSONArray jsonArray = response.getJSONArray("foods");
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                (Request.Method.GET,  url, null, new Response.Listener<JSONObject>() {
 
-                   // JSONObject food = jsonArray.getJSONObject(0);
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            JSONArray foods = response.getJSONArray("foods");
+                            for(int i=0; i< foods.length(); i++){
+                                JSONObject food = (JSONObject) foods.get(i);
+                                FoodModel foodModel = new FoodModel();
+                                foodModel.setFoodId(food.getString("fdcId"));
+                                foodModel.setDescription(food.getString("description"));
+                               /* if(food.has("ingredients")) {
+                                    foodModel.setIngredients(food.getString("ingredients"));
 
-                    foodDescription = response.getString("totalHits");
+                                }*/
+                                foodModel.setFoodCategory(food.getString("foodCategory"));
+                                if(food.has("servingSize")){
+                                    foodModel.setServingSize(food.getDouble("servingSize"));
+                                }
+                                if(food.has("servingSizeUnit")) {
+                                    foodModel.setServingSizeUnit(food.getString("servingSizeUnit"));
+                                }
+                                if(food.has("foodNutrients")) {
 
-                    //Toast.makeText(context, foodDescription, Toast.LENGTH_SHORT).show();
-                    volleyResponseListener.onResponse(foodDescription);
+                                    JSONArray jsonFoodNutrients = food.getJSONArray("foodNutrients");
+                                    for (int j = 0; j < 2; j++) {
+                                        JSONObject foodNutrient = (JSONObject) jsonFoodNutrients.get(j);
+                                        FoodNutrients foodNutrients = new FoodNutrients();
+                                        foodNutrients.setNutrientName(foodNutrient.getString("nutrientName"));
+                                        foodNutrients.setNutrientUnit(foodNutrient.getString("unitName"));
+                                        foodNutrients.setValue(foodNutrient.getDouble("value"));
+                                        listOfNutrients.add(foodNutrients);
+                                    }
+                                    foodModel.setFoodNutrients(listOfNutrients);
+                                }
+                                listOfFoods.add(foodModel);
+                            }
+                            Log.i("listoffoods", listOfFoods.get(2).toString());
 
-                    // we are using picasso to load the image from url.
-                } catch (JSONException e) {
-                    // if we do not extract data from json object properly.
-                    // below line of code is use to handle json exception
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            // this is the error listener method which
-            // we will call if we get any error from API.
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-                Toast.makeText(context, "Error connection", Toast.LENGTH_SHORT).show();
-                Log.i("error", error.toString());
-                volleyResponseListener.onError("Something went wrong");
-            }
-        });
-        // at last we are adding our json
-        // object request to our request
-        // queue to fetch all the json data.
-        //queue.add(jsonObjectRequest);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        volleyResponseListener.onResponse(listOfFoods);
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show();
+                        volleyResponseListener.onError("Something wrong!");
+                    }
+                });
         MySingleton.getInstance(context).addToRequestQueue(jsonObjectRequest);
         //return foodDescription;
     }
