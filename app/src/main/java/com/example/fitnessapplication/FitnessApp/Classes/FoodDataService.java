@@ -42,7 +42,6 @@ public class FoodDataService {
         String url = context.getString(R.string.URL_FOR_FOOD) + foodName;
 
         List<FoodModel> listOfFoods = new ArrayList<>();
-        List<FoodNutrients> listOfNutrients = new ArrayList<>();
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.GET,  url, null, new Response.Listener<JSONObject>() {
@@ -52,14 +51,15 @@ public class FoodDataService {
                         try {
                             JSONArray foods = response.getJSONArray("foods");
                             for(int i=0; i< foods.length(); i++){
+                                List<FoodNutrients> listOfNutrients = new ArrayList<>();
                                 JSONObject food = (JSONObject) foods.get(i);
                                 FoodModel foodModel = new FoodModel();
                                 foodModel.setFoodId(food.getString("fdcId"));
                                 foodModel.setDescription(food.getString("description"));
-                               /* if(food.has("ingredients")) {
+                                if(food.has("ingredients")) {
                                     foodModel.setIngredients(food.getString("ingredients"));
 
-                                }*/
+                                }
                                 foodModel.setFoodCategory(food.getString("foodCategory"));
                                 if(food.has("servingSize")){
                                     foodModel.setServingSize(food.getDouble("servingSize"));
@@ -67,22 +67,20 @@ public class FoodDataService {
                                 if(food.has("servingSizeUnit")) {
                                     foodModel.setServingSizeUnit(food.getString("servingSizeUnit"));
                                 }
-                                if(food.has("foodNutrients")) {
 
-                                    JSONArray jsonFoodNutrients = food.getJSONArray("foodNutrients");
-                                    for (int j = 0; j < 2; j++) {
+                                JSONArray jsonFoodNutrients = food.getJSONArray("foodNutrients");
+                                    for (int j = 0; j < jsonFoodNutrients.length(); j++) {
                                         JSONObject foodNutrient = (JSONObject) jsonFoodNutrients.get(j);
                                         FoodNutrients foodNutrients = new FoodNutrients();
                                         foodNutrients.setNutrientName(foodNutrient.getString("nutrientName"));
                                         foodNutrients.setNutrientUnit(foodNutrient.getString("unitName"));
                                         foodNutrients.setValue(foodNutrient.getDouble("value"));
                                         listOfNutrients.add(foodNutrients);
+                                        foodModel.setFoodNutrients(listOfNutrients);
                                     }
-                                    foodModel.setFoodNutrients(listOfNutrients);
-                                }
                                 listOfFoods.add(foodModel);
-                            }
-                            Log.i("listoffoods", listOfFoods.get(2).toString());
+                                }
+
 
                         } catch (JSONException e) {
                             e.printStackTrace();

@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -44,6 +45,7 @@ public class SearchFoodActivity extends AppCompatActivity implements Listener {
     RecyclerView rvFoodList;
     LinearLayoutManager layoutManager;
     FoodRecyclerViewAdapter foodRecyclerViewAdapter;
+    FoodRecyclerViewAdapter.RecyclerViewClickListener recyclerViewClickListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,12 +73,22 @@ public class SearchFoodActivity extends AppCompatActivity implements Listener {
 
                     @Override
                     public void onResponse(List<FoodModel> food) {
-                        foodRecyclerViewAdapter = new FoodRecyclerViewAdapter(food);
+                        recyclerViewClickListener = new FoodRecyclerViewAdapter.RecyclerViewClickListener() {
+                            @Override
+                            public void onClick(View v, int position) {
+                                Intent intent = new Intent(getApplicationContext(), FoodDetailsActivity.class);
+                                intent.putExtra("foodDetails", food.get(position));
+                                startActivity(intent);
+                            }
+                        };
+                        foodRecyclerViewAdapter = new FoodRecyclerViewAdapter(food, recyclerViewClickListener);
                         rvFoodList.setAdapter(foodRecyclerViewAdapter);
                         foodRecyclerViewAdapter.notifyDataSetChanged();
                     }
+
                 });
             }
+
         });
 
     }

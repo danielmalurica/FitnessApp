@@ -1,9 +1,13 @@
 package com.example.fitnessapplication.FitnessApp.Classes;
 
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.util.ArrayList;
 import java.util.List;
 
-public class FoodModel {
+public class FoodModel implements Parcelable {
     private String foodId;
     private String description;
     private String ingredients;
@@ -24,6 +28,29 @@ public class FoodModel {
 
     public FoodModel() {
     }
+
+    protected FoodModel(Parcel in) {
+        foodId = in.readString();
+        description = in.readString();
+        ingredients = in.readString();
+        foodCategory = in.readString();
+        servingSize = in.readDouble();
+        servingSizeUnit = in.readString();
+        foodNutrients = new ArrayList<FoodNutrients>();
+        in.readTypedList(foodNutrients, FoodNutrients.CREATOR);
+    }
+
+    public static final Creator<FoodModel> CREATOR = new Creator<FoodModel>() {
+        @Override
+        public FoodModel createFromParcel(Parcel in) {
+            return new FoodModel(in);
+        }
+
+        @Override
+        public FoodModel[] newArray(int size) {
+            return new FoodModel[size];
+        }
+    };
 
     public String getFoodId() {
         return foodId;
@@ -91,5 +118,21 @@ public class FoodModel {
                 ", servingSizeUnit='" + servingSizeUnit + '\'' +
                 ", foodNutrients=" + foodNutrients +
                 '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(foodId);
+        dest.writeString(description);
+        dest.writeString(ingredients);
+        dest.writeString(foodCategory);
+        dest.writeDouble(servingSize);
+        dest.writeString(servingSizeUnit);
+        dest.writeTypedList(foodNutrients);
     }
 }

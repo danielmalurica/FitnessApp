@@ -17,9 +17,11 @@ import java.util.List;
 public class FoodRecyclerViewAdapter extends RecyclerView.Adapter<FoodRecyclerViewAdapter.ViewHolder> {
 
     private List<FoodModel> foodList;
+    private RecyclerViewClickListener recyclerViewClickListener;
 
-    public FoodRecyclerViewAdapter(List<FoodModel> foodList) {
+    public FoodRecyclerViewAdapter(List<FoodModel> foodList, RecyclerViewClickListener listener) {
         this.foodList = foodList;
+        this.recyclerViewClickListener = listener;
     }
 
     @NonNull
@@ -33,7 +35,7 @@ public class FoodRecyclerViewAdapter extends RecyclerView.Adapter<FoodRecyclerVi
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         String description = foodList.get(position).getDescription();
         String category = foodList.get(position).getFoodCategory();
-        double nbOfCal = foodList.get(position).getFoodNutrients().get(0).getValue();
+        double nbOfCal = foodList.get(position).getFoodNutrients().get(4).getValue();
         holder.setData(description,category, nbOfCal);
     }
 
@@ -42,7 +44,11 @@ public class FoodRecyclerViewAdapter extends RecyclerView.Adapter<FoodRecyclerVi
         return foodList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public interface RecyclerViewClickListener {
+        void onClick(View v, int position);
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView tvDescription;
         private TextView tvCategory;
@@ -53,12 +59,18 @@ public class FoodRecyclerViewAdapter extends RecyclerView.Adapter<FoodRecyclerVi
             tvDescription = itemView.findViewById(R.id.nameOfMeal);
             tvCategory = itemView.findViewById(R.id.categoryOfMeal);
             tvNbCal = itemView.findViewById(R.id.numberOfCal);
+            itemView.setOnClickListener(this);
         }
 
         public void setData(String description, String category, double nbOfCal) {
             tvDescription.setText(description);
             tvCategory.setText(category);
             tvNbCal.setText(Double.toString(nbOfCal));
+        }
+
+        @Override
+        public void onClick(View v) {
+            recyclerViewClickListener.onClick(v, getAdapterPosition());
         }
     }
 }
