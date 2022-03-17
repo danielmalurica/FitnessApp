@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".FitnessApp.UsersActivities.DailyCalReq.SelectGoalActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bmr"
+        android:textAlignment="center"
+        android:text="Your BMR"
+        android:textSize="15dp"/>
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/maintaintWeight"
+            android:text="Maintain weight"
+            android:textSize="20dp"/>
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/mildWeightLoss"
+            android:text="Mild weight loss"
+            android:textSize="20dp"/>
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/weightLoss"
+            android:text="Weight loss"
+            android:textSize="20dp"/>
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/extremeWeightLoss"
+            android:text="Extreme weight loss"
+            android:textSize="20dp"/>
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/mildWeightGain"
+            android:text="Mild weight gain"
+            android:textSize="20dp"/>
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/weightGain"
+            android:text="Weight gain"
+            android:textSize="20dp"/>
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/extremeWeightGain"
+            android:text="Extreme weight gain"
+            android:textSize="20dp"/>
+    </RadioGroup>
+
+</LinearLayout>

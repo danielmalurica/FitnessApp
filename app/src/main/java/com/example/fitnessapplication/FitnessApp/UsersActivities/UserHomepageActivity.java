@@ -11,11 +11,12 @@ import android.widget.TextView;
 
 import com.example.fitnessapplication.FitnessApp.UsersActivities.BMI.BmiUpdateDataActivity;
 import com.example.fitnessapplication.FitnessApp.UsersActivities.BMI.BmiUserDataActivity;
+import com.example.fitnessapplication.FitnessApp.UsersActivities.DailyCalReq.ListOfActivititiesActivity;
 import com.example.fitnessapplication.R;
 
 public class UserHomepageActivity extends AppCompatActivity {
 
-    Button buttonToBmi, buttonJson;
+    Button buttonToBmi, buttonJson, btnDailyCal;
     TextView textView;
     EditText edtFood;
     String foodName;
@@ -27,7 +28,6 @@ public class UserHomepageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_homepage);
 
-        edtFood = findViewById(R.id.editTextFood);
         buttonToBmi = findViewById(R.id.btnToBmi);
         buttonToBmi.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,7 +43,14 @@ public class UserHomepageActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), SearchFoodActivity.class));
             }
         });
-        textView = findViewById(R.id.textView3);
+
+        btnDailyCal = findViewById(R.id.toDailyCal);
+        btnDailyCal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), ListOfActivititiesActivity.class));
+            }
+        });
 
     }
 }

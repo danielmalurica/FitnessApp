@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FitnessApplication">
         <activity
+            android:name=".FitnessApp.UsersActivities.DailyCalReq.SelectGoalActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FitnessApp.UsersActivities.DailyCalReq.ListOfActivititiesActivity"
+            android:exported="false" />
+        <activity
             android:name=".FitnessApp.UsersActivities.FoodDetailsActivity"
             android:exported="false" />
         <activity
