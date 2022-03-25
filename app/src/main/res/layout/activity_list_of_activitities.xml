@@ -38,17 +38,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Name:"
+                android:text="Gender:"
                 android:textColor="@color/white"
                 android:textSize="25dp" />
 
             <TextView
-                android:id="@+id/bmrName"
+                android:id="@+id/bmrGender"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
-                android:text="Your name"
+                android:text="Your gender"
                 android:textColor="@color/white"
                 android:textSize="20dp" />
         </LinearLayout>
@@ -125,14 +125,8 @@
                 android:textSize="20dp" />
         </LinearLayout>
 
-        <Spinner
-            android:id="@+id/bmrActivities"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp" />
-
         <Button
-            android:id="@+id/calculateDalyCalories"
+            android:id="@+id/goToActivityLevel"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_alignParentBottom="true"
@@ -141,7 +135,7 @@
             android:layout_marginRight="20dp"
             android:layout_marginBottom="15dp"
             android:background="@drawable/rounded_button_orange"
-            android:text="Calculate my BMI"
+            android:text="Select your activity level"
             android:textSize="15sp" />
 
         <Button

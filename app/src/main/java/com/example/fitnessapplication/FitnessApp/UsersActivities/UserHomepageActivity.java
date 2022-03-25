@@ -9,9 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.fitnessapplication.FitnessApp.UsersActivities.BMI.BmiUpdateDataActivity;
 import com.example.fitnessapplication.FitnessApp.UsersActivities.BMI.BmiUserDataActivity;
-import com.example.fitnessapplication.FitnessApp.UsersActivities.DailyCalReq.ListOfActivititiesActivity;
+import com.example.fitnessapplication.FitnessApp.UsersActivities.DailyCalAndMacroReq.ListOfActivititiesActivity;
 import com.example.fitnessapplication.R;
 
 public class UserHomepageActivity extends AppCompatActivity {
