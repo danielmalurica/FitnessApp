@@ -7,19 +7,179 @@
     android:layout_height="match_parent"
     tools:context=".FitnessApp.UsersActivities.UserHomepageActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="111dp"
-        android:layout_marginTop="81dp"
-        android:layout_marginEnd="242dp"
-        android:layout_marginBottom="631dp"
-        android:text="UserHomePage"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:padding="16dp">
+
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:layout_marginBottom="4dp"
+                android:text="30 of 120"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toTopOf="@+id/fatIndicator"
+                app:layout_constraintStart_toEndOf="@+id/circularProgressIndicator" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:layout_marginBottom="4dp"
+                android:text="30 of 120"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toTopOf="@+id/carbsIndicator"
+                app:layout_constraintStart_toEndOf="@+id/circularProgressIndicator" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:layout_marginBottom="4dp"
+                android:text="30 of 120"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toTopOf="@+id/proteinIndicator"
+                app:layout_constraintStart_toEndOf="@+id/circularProgressIndicator" />
+
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/circularProgressIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:background="@color/second_color"
+                android:progress="40"
+                app:indicatorColor="@color/background_color"
+                app:indicatorSize="120dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.051"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:trackColor="@color/orange_color"
+                app:trackCornerRadius="10dp"
+                app:trackThickness="10dp" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:text="300"
+                android:textColor="@color/background_color"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/circularProgressIndicator"
+                app:layout_constraintHorizontal_bias="0.507"
+                app:layout_constraintStart_toStartOf="@+id/circularProgressIndicator"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="48dp"
+                android:text="of 2000 Kcal"
+                android:textColor="@color/orange_color"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/circularProgressIndicator"
+                app:layout_constraintHorizontal_bias="0.507"
+                app:layout_constraintStart_toStartOf="@+id/circularProgressIndicator"
+                app:layout_constraintTop_toTopOf="@+id/circularProgressIndicator" />
+
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/proteinIndicator"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="100dp"
+                android:progress="40"
+                app:indicatorColor="@color/orange_color"
+                app:layout_constraintBottom_toTopOf="@+id/fatIndicator"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/circularProgressIndicator"
+                app:layout_constraintTop_toTopOf="parent"
+                app:trackColor="@color/background_color"
+                app:trackCornerRadius="8dp"
+                app:trackThickness="12dp" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Protein"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.213"
+                app:layout_constraintStart_toEndOf="@+id/proteinIndicator"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/fatIndicator"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="100dp"
+                android:progress="15"
+                app:indicatorColor="@color/orange_color"
+                app:layout_constraintBottom_toTopOf="@+id/carbsIndicator"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/circularProgressIndicator"
+                app:layout_constraintTop_toBottomOf="@+id/proteinIndicator"
+                app:trackColor="@color/background_color"
+                app:trackCornerRadius="8dp"
+                app:trackThickness="12dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Fat"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.216"
+                app:layout_constraintStart_toEndOf="@+id/proteinIndicator"
+                app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/carbsIndicator"
+                android:layout_width="100dp"
+                android:layout_height="8dp"
+                android:layout_marginEnd="100dp"
+                android:progress="15"
+                app:indicatorColor="@color/orange_color"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/circularProgressIndicator"
+                app:layout_constraintTop_toBottomOf="@+id/fatIndicator"
+                app:trackColor="@color/background_color"
+                app:trackCornerRadius="8dp"
+                app:trackThickness="12dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
+                android:text="Carbs"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.223"
+                app:layout_constraintStart_toEndOf="@+id/proteinIndicator"
+                app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
 
     <Button
         android:id="@+id/btnToBmi"
@@ -31,14 +191,14 @@
         app:layout_constraintHorizontal_bias="0.464"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.212" />
+        app:layout_constraintVertical_bias="0.332" />
 
     <Button
         android:id="@+id/json"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="150dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="108dp"
         android:layout_marginEnd="173dp"
         android:text="Json"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,11 +210,12 @@
         android:id="@+id/toDailyCal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="391dp"
+        android:layout_marginTop="528dp"
         android:text="Daily Cal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.625"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
