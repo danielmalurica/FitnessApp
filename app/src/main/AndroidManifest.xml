@@ -12,6 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FitnessApplication">
         <activity
+            android:name=".FitnessApp.UsersActivities.Charts.EvolutionByMonth"
+            android:exported="false" />
+        <activity
+            android:name=".FitnessApp.UsersActivities.ConsumedCalories.ActivityDetails"
+            android:exported="false" />
+        <activity
+            android:name=".FitnessApp.UsersActivities.ConsumedCalories.ListOfActivities"
+            android:exported="false" />
+        <activity
             android:name=".FitnessApp.UsersActivities.DailyCalAndMacroReq.ResultActivity"
             android:exported="false" />
         <activity
@@ -24,18 +33,17 @@
             android:name=".FitnessApp.UsersActivities.DailyCalAndMacroReq.ListOfActivititiesActivity"
             android:exported="false" />
         <activity
-            android:name=".FitnessApp.UsersActivities.FoodDetailsActivity"
+            android:name=".FitnessApp.UsersActivities.SearchAndAddFood.FoodDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".FitnessApp.UsersActivities.SearchFoodActivity"
+            android:name=".FitnessApp.UsersActivities.SearchAndAddFood.SearchFoodActivity"
             android:exported="false" />
         <activity
             android:name=".FitnessApp.UsersActivities.BMI.BmiUserDataActivity"
             android:exported="false" />
-        <activity android:name=".FitnessApp.UsersActivities.FoodListActivity" />
         <activity android:name=".FitnessApp.UsersActivities.BMI.BmiResultActivity" />
         <activity android:name=".FitnessApp.UsersActivities.BMI.BmiUpdateDataActivity" />
-        <activity android:name=".FitnessApp.UsersActivities.UserHomepageActivity" />
+        <activity android:name=".FitnessApp.UsersActivities.HomePage.UserHomepageActivity" />
         <activity android:name=".FitnessApp.AdminPanel.AdminHomepageActivity" />
         <activity android:name=".FitnessApp.Login.OtherDetailsActivity" />
         <activity android:name=".FitnessApp.Login.SignUpActivity" />

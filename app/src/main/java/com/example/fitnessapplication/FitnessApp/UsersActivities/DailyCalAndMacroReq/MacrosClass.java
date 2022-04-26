@@ -6,40 +6,40 @@ import android.os.Parcelable;
 import java.io.Serializable;
 
 public class MacrosClass implements Serializable {
-    private int protein;
-    private int fat;
-    private int carbs;
+    private double protein;
+    private double fat;
+    private double carbs;
 
     public MacrosClass() {
     }
 
-    public MacrosClass(int protein, int fat, int carbs) {
+    public MacrosClass(double protein, double fat, double carbs) {
         this.protein = protein;
         this.fat = fat;
         this.carbs = carbs;
     }
 
-    public int getProtein() {
+    public double getProtein() {
         return protein;
     }
 
-    public void setProtein(int protein) {
+    public void setProtein(double protein) {
         this.protein = protein;
     }
 
-    public int getFat() {
+    public double getFat() {
         return fat;
     }
 
-    public void setFat(int fat) {
+    public void setFat(double fat) {
         this.fat = fat;
     }
 
-    public int getCarbs() {
+    public double getCarbs() {
         return carbs;
     }
 
-    public void setCarbs(int carbs) {
+    public void setCarbs(double carbs) {
         this.carbs = carbs;
     }
 

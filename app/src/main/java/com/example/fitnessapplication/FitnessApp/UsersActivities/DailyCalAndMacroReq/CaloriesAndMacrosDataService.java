@@ -1,4 +1,4 @@
-package com.example.fitnessapplication.FitnessApp.Classes;
+package com.example.fitnessapplication.FitnessApp.UsersActivities.DailyCalAndMacroReq;
 
 import android.content.Context;
 import android.util.Log;
@@ -14,6 +14,8 @@ import com.android.volley.ServerError;
 import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.example.fitnessapplication.FitnessApp.Classes.CaloriesRequirements;
+import com.example.fitnessapplication.FitnessApp.Classes.MySingleton;
 
 import org.json.JSONArray;
 import org.json.JSONException;

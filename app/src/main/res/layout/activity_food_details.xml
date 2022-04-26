@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FitnessApp.UsersActivities.FoodDetailsActivity">
+    tools:context=".FitnessApp.UsersActivities.SearchAndAddFood.FoodDetailsActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -39,27 +39,6 @@
             android:id="@+id/foodCategory"/>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ingredients:"
-            android:textSize="20dp"
-            android:padding="10dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ingredients"
-            android:textSize="15dp"
-            android:id="@+id/foodIngredients"/>
-
-
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -69,7 +48,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Protein:"
+            android:text="Energy:"
             android:textSize="20dp"
             android:padding="10dp"/>
 
@@ -78,7 +57,7 @@
             android:layout_height="wrap_content"
             android:text="Value"
             android:textSize="15dp"
-            android:id="@+id/protein"/>
+            android:id="@+id/energy"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -86,9 +65,131 @@
             android:text="Unit"
             android:textSize="15dp"
             android:paddingLeft="2dp"
-            android:id="@+id/proteinUnit"/>
+            android:id="@+id/energyUnit"/>
 
     </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Protein:"
+                android:textSize="20dp"
+                android:padding="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Value"
+                android:textSize="15dp"
+                android:id="@+id/protein"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Unit"
+                android:textSize="15dp"
+                android:paddingLeft="2dp"
+                android:id="@+id/proteinUnit"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total Lipid(Fat):"
+                android:textSize="20dp"
+                android:padding="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Value"
+                android:textSize="15dp"
+                android:id="@+id/fat"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Unit"
+                android:textSize="15dp"
+                android:paddingLeft="2dp"
+                android:id="@+id/fatUnit"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Carbs:"
+                android:textSize="20dp"
+                android:padding="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Value"
+                android:textSize="15dp"
+                android:id="@+id/carbs"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Unit"
+                android:textSize="15dp"
+                android:paddingLeft="2dp"
+                android:id="@+id/carbsUnit"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ingredients:"
+                android:textSize="20dp"
+                android:padding="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ingredients"
+                android:textSize="15dp"
+                android:id="@+id/foodIngredients"/>
+
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/saveToDiary"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/rounded_button_orange"
+            android:text="Add"
+            android:textSize="15sp" />
 
     </LinearLayout>
 

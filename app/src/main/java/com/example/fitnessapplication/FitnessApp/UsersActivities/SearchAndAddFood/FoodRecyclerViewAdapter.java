@@ -1,15 +1,14 @@
-package com.example.fitnessapplication.FitnessApp.Classes;
+package com.example.fitnessapplication.FitnessApp.UsersActivities.SearchAndAddFood;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fitnessapplication.FitnessApp.Classes.FoodModel;
 import com.example.fitnessapplication.R;
 
 import java.util.List;
@@ -35,7 +34,13 @@ public class FoodRecyclerViewAdapter extends RecyclerView.Adapter<FoodRecyclerVi
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         String description = foodList.get(position).getDescription();
         String category = foodList.get(position).getFoodCategory();
-        double nbOfCal = foodList.get(position).getFoodNutrients().get(4).getValue();
+        double nbOfCal=0;
+        for(int i=0; i<foodList.get(position).getFoodNutrients().size(); i++) {
+            if (foodList.get(position).getFoodNutrients().get(i).getNutrientName().equals("Protein")) {
+                nbOfCal = foodList.get(position).getFoodNutrients().get(i).getValue();
+
+            }
+        }
         holder.setData(description,category, nbOfCal);
     }
 

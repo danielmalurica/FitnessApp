@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -12,14 +11,11 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.example.fitnessapplication.FitnessApp.Classes.CaloriesAndMacrosDataService;
-import com.example.fitnessapplication.FitnessApp.Classes.GoalValuesModel;
 import com.example.fitnessapplication.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Locale;
 
@@ -125,13 +121,13 @@ public class SelectGoalActivity extends AppCompatActivity {
                             try {
                                 calories = object.getDouble("calorie");
                                 JSONObject balanced = object.getJSONObject("balanced");
-                                MacrosClass balancedMacros = new MacrosClass(balanced.getInt("protein"), balanced.getInt("fat"), balanced.getInt("carbs"));
+                                MacrosClass balancedMacros = new MacrosClass(balanced.getDouble("protein"), balanced.getDouble("fat"), balanced.getDouble("carbs"));
                                 JSONObject lowFat = object.getJSONObject("lowfat");
-                                MacrosClass lowFatMacros = new MacrosClass(lowFat.getInt("protein"), lowFat.getInt("fat"), lowFat.getInt("carbs"));
+                                MacrosClass lowFatMacros = new MacrosClass(lowFat.getDouble("protein"), lowFat.getDouble("fat"), lowFat.getDouble("carbs"));
                                 JSONObject lowCarbs = object.getJSONObject("lowcarbs");
-                                MacrosClass lowCarbsMacros = new MacrosClass(lowCarbs.getInt("protein"), lowCarbs.getInt("fat"), lowCarbs.getInt("carbs"));
+                                MacrosClass lowCarbsMacros = new MacrosClass(lowCarbs.getDouble("protein"), lowCarbs.getDouble("fat"), lowCarbs.getDouble("carbs"));
                                 JSONObject highProtein = object.getJSONObject("highprotein");
-                                MacrosClass highProteinMacros = new MacrosClass(highProtein.getInt("protein"), highProtein.getInt("fat"), highProtein.getInt("carbs"));
+                                MacrosClass highProteinMacros = new MacrosClass(highProtein.getDouble("protein"), highProtein.getDouble("fat"), highProtein.getDouble("carbs"));
                                 Intent intent1 = new Intent(SelectGoalActivity.this, ResultActivity.class);
                                 intent1.putExtra("CALORIES_RESULT", calories);
                                intent1.putExtra("BALANCED_MACROS", balancedMacros);

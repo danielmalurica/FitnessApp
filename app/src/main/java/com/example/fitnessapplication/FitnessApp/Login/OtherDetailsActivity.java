@@ -1,14 +1,14 @@
 package com.example.fitnessapplication.FitnessApp.Login;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,15 +17,15 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.fitnessapplication.FitnessApp.Classes.DatabaseHelper;
 import com.example.fitnessapplication.FitnessApp.Classes.User;
 import com.example.fitnessapplication.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,11 +38,15 @@ public class OtherDetailsActivity extends AppCompatActivity {
     String userId, userEmail;
     private FirebaseFirestore firebaseFirestore;
     private FirebaseAuth mAuth;
+    private DatabaseReference mDatabase;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_other_details);
+
+        LocalDate localDate = LocalDate.now();
 
         textViewName = findViewById(R.id.edtName);
         textViewAge = findViewById(R.id.edtAge);

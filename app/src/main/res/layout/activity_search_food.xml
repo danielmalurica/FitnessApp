@@ -5,27 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".FitnessApp.UsersActivities.SearchFoodActivity">
+    tools:context=".FitnessApp.UsersActivities.SearchAndAddFood.SearchFoodActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginHorizontal="10dp"
         android:weightSum="100">
 
-        <EditText
-            android:layout_width="0dp"
-            android:layout_weight="85"
-            android:layout_height="wrap_content"
-            android:id="@+id/searchFood"/>
+        <SearchView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/searchview_background"
+            android:queryHint="Enter food name"
+            android:clickable="true"
+            android:id="@+id/searchViewFood"/>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:width="0dp"
-            android:layout_weight="15"
-            android:text="Find food"
-            android:id="@+id/findFood"/>
 
     </LinearLayout>
 
@@ -33,6 +31,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="10dp"
         android:id="@+id/foodList"/>
 
 </LinearLayout>
