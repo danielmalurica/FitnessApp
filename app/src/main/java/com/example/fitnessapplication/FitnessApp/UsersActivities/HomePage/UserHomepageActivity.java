@@ -41,15 +41,8 @@ import java.util.Locale;
 public class UserHomepageActivity extends AppCompatActivity {
 
     Button buttonToBmi, buttonJson, btnDailyCal, btnToActivities, btnToChart;
-    TextView tvCurrentCal, tvCurrentProtein, tvCurrentFat, tvCurrentCarbs;
-    TextView tvTargetCalories, tvTargetProtein, tvTargetFat, tvTargetCarbs, tvBurnedCal, tvConsumedCal;
-    CircularProgressIndicator cpiCal;
-    LinearProgressIndicator lpiProtein;
-    LinearProgressIndicator lpiFat;
-    LinearProgressIndicator lpiCarbs;
-
+    Button btnAddFoodToBreakfast;
     private DatabaseReference mDatabase;
-    MacrosClass macrosClass;
 
 
     @Override
@@ -58,74 +51,13 @@ public class UserHomepageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_homepage);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        macrosClass = new MacrosClass(0, 0, 0);
-
-        tvTargetCalories = findViewById(R.id.targetCalories);
-        tvTargetProtein = findViewById(R.id.proteinTarget);
-        tvTargetFat = findViewById(R.id.fatTarget);
-        tvTargetCarbs = findViewById(R.id.carbsTarget);
-        tvBurnedCal = findViewById(R.id.burnedCal);
-        tvConsumedCal = findViewById(R.id.consumedCal);
-
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        mDatabase.child("caloriesAndMacros").child(user.getUid()).child("goals").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-                    Toast.makeText(UserHomepageActivity.this, "Error!", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    tvTargetCalories.setText(task.getResult().child("calories").getValue().toString());
-                    tvTargetProtein.setText(task.getResult().child("proteins").getValue().toString());
-                    tvTargetFat.setText(task.getResult().child("fat").getValue().toString());
-                    tvTargetCarbs.setText(task.getResult().child("carbs").getValue().toString());
-                }
-            }
-        });
-
-        tvCurrentCal = findViewById(R.id.currentCal);
-        tvCurrentProtein = findViewById(R.id.currentProtein);
-        tvCurrentFat = findViewById(R.id.currentFat);
-        tvCurrentCarbs = findViewById(R.id.currentCarbs);
-
         String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
-        Calendar mCalendar = Calendar.getInstance();
-
-        mDatabase.child("caloriesAndMacros").child(user.getUid()).child("activities").child(currentDate).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()) {
-                    final DecimalFormat df = new DecimalFormat("0");
-                    tvBurnedCal.setText(snapshot.child("burnedCalories").getValue().toString());
-
-                }
-                else {
-                    mDatabase.child("caloriesAndMacros").child(user.getUid()).child("activities").child(currentDate).child("burnedCalories").setValue(0);
-                    mDatabase.child("caloriesAndMacros").child(user.getUid()).child("activities").child(currentDate).child("unit").setValue("calorie");
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
         mDatabase.child("caloriesAndMacros").child(user.getUid()).child("consumption").child(currentDate).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()) {
-                    final DecimalFormat df = new DecimalFormat("0.0");
-                    double consumedCal = Double.parseDouble(snapshot.child("energy").getValue().toString());
-                    double burned = Double.parseDouble(tvBurnedCal.getText().toString());
-                    double diferenceCal = consumedCal - burned;
-                    if(diferenceCal >= 0){
-                        tvCurrentCal.setText(String.valueOf(df.format(diferenceCal)));
-                    }
-                    tvConsumedCal.setText(snapshot.child("energy").getValue().toString());
-                    tvCurrentProtein.setText(snapshot.child("protein").getValue().toString());
-                    tvCurrentFat.setText(snapshot.child("fat").getValue().toString());
-                    tvCurrentCarbs.setText(snapshot.child("carbs").getValue().toString());
+
                 }
                 else {
                     mDatabase.child("caloriesAndMacros").child(user.getUid()).child("consumption").child(currentDate).child("energy").setValue(0);
@@ -142,14 +74,17 @@ public class UserHomepageActivity extends AppCompatActivity {
         });
 
 
-        lpiProtein = findViewById(R.id.proteinIndicator);
-        setDataToLinearProgressIndicator(tvCurrentProtein, tvTargetProtein, lpiProtein);
-        lpiFat = findViewById(R.id.fatIndicator);
-        setDataToLinearProgressIndicator(tvCurrentFat, tvTargetFat, lpiFat);
-        lpiCarbs = findViewById(R.id.carbsIndicator);
-        setDataToLinearProgressIndicator(tvCurrentCarbs, tvTargetCarbs, lpiCarbs);
-        cpiCal = findViewById(R.id.circularProgressIndicator);
-        setDataToCircularProgressIndicator(tvCurrentCal, tvTargetCalories, cpiCal);
+        btnAddFoodToBreakfast = findViewById(R.id.addFoodBreakfast);
+        btnAddFoodToBreakfast.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserHomepageActivity.this, SearchFoodActivity.class);
+                intent.putExtra("PERIOD_OF_DAY", "breakfast");
+                startActivity(intent);
+                finish();
+            }
+        });
+
 
         buttonToBmi = findViewById(R.id.btnToBmi);
         buttonToBmi.setOnClickListener(new View.OnClickListener() {
@@ -195,27 +130,4 @@ public class UserHomepageActivity extends AppCompatActivity {
     }
 
 
-    public void setDataToLinearProgressIndicator(TextView current, TextView target, LinearProgressIndicator linearProgressIndicator){
-        final Handler handler = new Handler(Looper.getMainLooper());
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                double result = (Float.parseFloat(current.getText().toString())) / (Float.parseFloat(target.getText().toString()));
-                result *= 100;
-                linearProgressIndicator.setProgress((int) result);
-            }
-        }, 2000);
-    }
-
-    public void setDataToCircularProgressIndicator(TextView current, TextView target, CircularProgressIndicator circularProgressIndicator){
-        final Handler handler = new Handler(Looper.getMainLooper());
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                double result = (Float.parseFloat(current.getText().toString())) / (Float.parseFloat(target.getText().toString()));
-                result *= 100;
-                circularProgressIndicator.setProgress((int) result);
-            }
-        }, 2000);
-    }
 }

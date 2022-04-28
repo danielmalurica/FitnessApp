@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.fitnessapplication.FitnessApp.Classes.FoodModel;
 import com.example.fitnessapplication.FitnessApp.Classes.FoodNutrients;
@@ -44,11 +45,14 @@ public class FoodDetailsActivity extends AppCompatActivity {
     private DatabaseReference myRef;
     private FirebaseUser user;
 
+    long id = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_details);
 
+        String period = getIntent().getStringExtra("PERIOD");
         macrosClass = new MacrosClass();
 
         tvFoodName = findViewById(R.id.foodNameTitle);
@@ -98,6 +102,7 @@ public class FoodDetailsActivity extends AppCompatActivity {
         btnAddToDiary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(FoodDetailsActivity.this, period.toString(), Toast.LENGTH_SHORT).show();
                 String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
                 myRef.child(user.getUid()).child("consumption").child(currentDate).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                     @Override
@@ -116,6 +121,32 @@ public class FoodDetailsActivity extends AppCompatActivity {
                             myRef.child(user.getUid()).child("consumption").child(currentDate).setValue(macrosClass);
                             myRef.child(user.getUid()).child("consumption").child(currentDate).child("energy").setValue(energy.getValue());
 
+                        }
+
+                    }
+                });
+
+                myRef.child(user.getUid()).child("consumption").child(currentDate).child(period).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DataSnapshot> task) {
+                        if(task.getResult().exists()){
+                        /*    double respEnergy = (double) task.getResult().child("energy").getValue(Double.class);
+                            double respCarbs = (double) task.getResult().child("carbs").getValue(Double.class);
+                            double respFat = (double) task.getResult().child("fat").getValue(Double.class);
+                            double respProtein= (double) task.getResult().child("protein").getValue(Double.class);
+                            myRef.child(user.getUid()).child("consumption").child(currentDate).child("energy").setValue(respEnergy + energy.getValue());
+                            myRef.child(user.getUid()).child("consumption").child(currentDate).child("carbs").setValue(respCarbs + carbs.getValue());
+                            myRef.child(user.getUid()).child("consumption").child(currentDate).child("fat").setValue(respFat + fat.getValue());
+                            myRef.child(user.getUid()).child("consumption").child(currentDate).child("protein").setValue(respProtein + protein.getValue());*/
+
+                            myRef.child(user.getUid()).child("consumption").child(currentDate).child(period).setValue(tvFoodName.getText().toString());
+                            Toast.makeText(FoodDetailsActivity.this, "Exist", Toast.LENGTH_SHORT).show();
+                        } else {
+                          /*  myRef.child(user.getUid()).child("consumption").child(currentDate).setValue(macrosClass);
+                            myRef.child(user.getUid()).child("consumption").child(currentDate).child("energy").setValue(energy.getValue());
+*/
+                            myRef.child(user.getUid()).child("consumption").child(currentDate).child(period).child(String.valueOf(id)).setValue(tvFoodName.getText().toString());
+                            Toast.makeText(FoodDetailsActivity.this, "Doesn't exist", Toast.LENGTH_SHORT).show();
                         }
 
                     }

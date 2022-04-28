@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.fitnessapplication.FitnessApp.Classes.FoodModel;
@@ -18,6 +19,7 @@ import java.util.List;
 
 public class SearchFoodActivity extends AppCompatActivity implements Listener {
 
+    TextView tvTypeOfMeal;
     SearchView searchView;
     RecyclerView rvFoodList;
     LinearLayoutManager layoutManager;
@@ -29,6 +31,9 @@ public class SearchFoodActivity extends AppCompatActivity implements Listener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_food);
 
+        String period = getIntent().getStringExtra("PERIOD_OF_DAY");
+        tvTypeOfMeal = findViewById(R.id.typeOfMeal);
+        tvTypeOfMeal.setText(period);
         rvFoodList = findViewById(R.id.foodList);
         layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(RecyclerView.VERTICAL);
@@ -53,6 +58,7 @@ public class SearchFoodActivity extends AppCompatActivity implements Listener {
                             public void onClick(View v, int position) {
                                 Intent intent = new Intent(getApplicationContext(), FoodDetailsActivity.class);
                                 intent.putExtra("foodDetails", food.get(position));
+                                intent.putExtra("PERIOD", period);
                                 startActivity(intent);
                             }
                         };

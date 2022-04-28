@@ -83,6 +83,7 @@ public class SignInActivity extends AppCompatActivity {
 
                             Intent intent = new Intent(getApplicationContext(), UserHomepageActivity.class);
                             startActivity(intent);
+                            finish();
                         }
                         else {
                             String errorCode = ((FirebaseAuthException) task.getException()).getErrorCode();

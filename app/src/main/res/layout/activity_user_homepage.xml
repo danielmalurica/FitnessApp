@@ -8,6 +8,128 @@
     android:background="@color/background_color"
     tools:context=".FitnessApp.UsersActivities.HomePage.UserHomepageActivity">
 
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="20dp"
+        android:id="@+id/mcvBreakfast">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Breakfast"
+                android:id="@+id/breakfastText"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="kCal"
+                android:id="@+id/kcalText"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginTop="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="100"
+                android:id="@+id/kCalBreakfast"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="5dp"
+                app:layout_constraintEnd_toStartOf="@+id/kcalText"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/llBreakfast"
+                app:layout_constraintTop_toBottomOf="@id/breakfastText"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="100"
+                    android:layout_marginLeft="10dp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="gr of Proteins"
+                    android:layout_marginLeft="5dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="100"
+                    android:layout_marginLeft="10dp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="gr of Fats"
+                    android:layout_marginLeft="5dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="100"
+                    android:layout_marginLeft="10dp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="gr of Carbs"
+                    android:layout_marginLeft="5dp"/>
+
+            </LinearLayout>
+
+            <ListView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/llBreakfast"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/breakfastList"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add Food"
+                android:id="@+id/addFoodBreakfast"
+                app:layout_constraintTop_toBottomOf="@id/breakfastList"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
     <Button
         android:id="@+id/btnToChart"
         android:layout_width="wrap_content"
@@ -32,311 +154,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.822" />
 
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_margin="10dp"
-        app:cardCornerRadius="20dp"
-        android:id="@+id/mcvInfoCalories">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/second_color"
-            android:padding="16dp">
-
-            <TextView
-                android:id="@+id/currentProtein"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="70dp"
-                android:layout_marginBottom="4dp"
-                android:text="0"
-                android:textStyle="italic"
-                app:layout_constraintBottom_toTopOf="@+id/proteinIndicator"
-                app:layout_constraintStart_toEndOf="@+id/circularProgressIndicator" />
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginBottom="4dp"
-                android:text="of"
-                android:textStyle="italic"
-                app:layout_constraintBottom_toTopOf="@+id/proteinIndicator"
-                app:layout_constraintStart_toEndOf="@+id/currentProtein" />
-
-            <TextView
-                android:id="@+id/proteinTarget"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginBottom="4dp"
-                android:text="120"
-                android:textStyle="italic"
-                app:layout_constraintBottom_toTopOf="@+id/proteinIndicator"
-                app:layout_constraintStart_toEndOf="@+id/textView3"
-              />
-
-            <TextView
-                android:id="@+id/currentFat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="70dp"
-                android:layout_marginBottom="4dp"
-                android:text="0"
-                android:textStyle="italic"
-                app:layout_constraintBottom_toTopOf="@+id/fatIndicator"
-                app:layout_constraintStart_toEndOf="@+id/circularProgressIndicator" />
-
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginBottom="4dp"
-                android:text="of"
-                android:textStyle="italic"
-                app:layout_constraintBottom_toTopOf="@+id/fatIndicator"
-                app:layout_constraintStart_toEndOf="@+id/currentFat" />
-
-            <TextView
-                android:id="@+id/fatTarget"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginBottom="4dp"
-                android:text="120"
-                android:textStyle="italic"
-                app:layout_constraintBottom_toTopOf="@+id/fatIndicator"
-                app:layout_constraintStart_toEndOf="@+id/textView4"
-                />
-
-            <TextView
-                android:id="@+id/currentCarbs"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="70dp"
-                android:layout_marginBottom="4dp"
-                android:text="0"
-                android:textStyle="italic"
-                app:layout_constraintBottom_toTopOf="@+id/carbsIndicator"
-                app:layout_constraintStart_toEndOf="@+id/circularProgressIndicator" />
-
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginBottom="4dp"
-                android:text="of"
-                android:textStyle="italic"
-                app:layout_constraintBottom_toTopOf="@+id/carbsIndicator"
-                app:layout_constraintStart_toEndOf="@+id/currentCarbs" />
-
-            <TextView
-                android:id="@+id/carbsTarget"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginBottom="4dp"
-                android:text="120"
-                android:textStyle="italic"
-                app:layout_constraintBottom_toTopOf="@+id/carbsIndicator"
-                app:layout_constraintStart_toEndOf="@+id/textView5"
-                />
-
-            <com.google.android.material.progressindicator.CircularProgressIndicator
-                android:id="@+id/circularProgressIndicator"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="1dp"
-                android:background="@color/second_color"
-                android:progress="0"
-                app:indicatorColor="@color/background_color"
-                app:indicatorSize="130dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.051"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:trackColor="@color/orange_color"
-                app:trackCornerRadius="10dp"
-                app:trackThickness="10dp" />
-
-            <TextView
-                android:id="@+id/currentCal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:text="0"
-                android:textColor="@color/background_color"
-                android:textSize="25sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/circularProgressIndicator"
-                app:layout_constraintHorizontal_bias="0.507"
-                app:layout_constraintStart_toStartOf="@+id/circularProgressIndicator"
-                app:layout_constraintTop_toTopOf="@id/circularProgressIndicator" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="56dp"
-                android:text="of 2000 Kcal"
-                android:textColor="@color/orange_color"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:id="@+id/targetCalories"
-                app:layout_constraintEnd_toEndOf="@+id/circularProgressIndicator"
-                app:layout_constraintHorizontal_bias="0.454"
-                app:layout_constraintStart_toStartOf="@+id/circularProgressIndicator"
-                app:layout_constraintTop_toTopOf="@+id/circularProgressIndicator" />
-
-            <com.google.android.material.progressindicator.LinearProgressIndicator
-                android:id="@+id/proteinIndicator"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="50dp"
-                android:progress="40"
-                app:indicatorColor="@color/orange_color"
-                app:layout_constraintBottom_toTopOf="@+id/fatIndicator"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintLeft_toRightOf="@id/circularProgressIndicator"
-                app:layout_constraintTop_toTopOf="parent"
-                app:trackColor="@color/background_color"
-                app:trackCornerRadius="8dp"
-                app:trackThickness="12dp" />
-
-            <TextView
-                android:id="@+id/textViewProtein"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginBottom="4dp"
-                android:text="Protein"
-                android:textSize="15dp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@id/proteinTarget"
-                app:layout_constraintBottom_toTopOf="@id/proteinIndicator" />
-
-            <com.google.android.material.progressindicator.LinearProgressIndicator
-                android:id="@+id/fatIndicator"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="50dp"
-                android:progress="15"
-                app:indicatorColor="@color/orange_color"
-                app:layout_constraintBottom_toTopOf="@+id/carbsIndicator"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintLeft_toRightOf="@id/circularProgressIndicator"
-                app:layout_constraintTop_toBottomOf="@+id/proteinIndicator"
-                app:trackColor="@color/background_color"
-                app:trackCornerRadius="8dp"
-                app:trackThickness="12dp" />
-
-            <TextView
-                android:id="@+id/textViewFat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginBottom="4dp"
-                android:text="Fat"
-                android:textSize="15dp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@id/proteinTarget"
-                app:layout_constraintBottom_toTopOf="@id/fatIndicator" />
-
-            <com.google.android.material.progressindicator.LinearProgressIndicator
-                android:id="@+id/carbsIndicator"
-                android:layout_width="100dp"
-                android:layout_height="8dp"
-                android:layout_marginEnd="50dp"
-                android:progress="15"
-                app:indicatorColor="@color/orange_color"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintLeft_toRightOf="@id/circularProgressIndicator"
-                app:layout_constraintTop_toBottomOf="@+id/fatIndicator"
-                app:trackColor="@color/background_color"
-                app:trackCornerRadius="8dp"
-                app:trackThickness="12dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Carbs"
-                android:textSize="15dp"
-                android:textStyle="bold"
-                android:layout_marginStart="10dp"
-                android:layout_marginBottom="4dp"
-                app:layout_constraintStart_toEndOf="@id/carbsTarget"
-                app:layout_constraintBottom_toTopOf="@id/carbsIndicator" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="0"
-                android:id="@+id/consumedCal"
-                app:layout_constraintTop_toBottomOf="@id/circularProgressIndicator"
-                app:layout_constraintStart_toStartOf="parent"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginStart="5dp"
-                android:text="kCal Consumed"
-                android:id="@+id/consumedText"
-                app:layout_constraintStart_toEndOf="@+id/consumedCal"
-                app:layout_constraintTop_toBottomOf="@id/circularProgressIndicator"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginStart="40dp"
-                android:text="0"
-                android:id="@+id/burnedCal"
-                app:layout_constraintTop_toBottomOf="@+id/circularProgressIndicator"
-                app:layout_constraintStart_toEndOf="@id/consumedText"
-
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginStart="5dp"
-                android:text="kCal Burned From Activities"
-                android:id="@+id/burnedText"
-                app:layout_constraintTop_toBottomOf="@+id/circularProgressIndicator"
-                app:layout_constraintStart_toEndOf="@+id/burnedCal"
-                />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </com.google.android.material.card.MaterialCardView>
-
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/mcvInfoCalories"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_margin="10dp"
-        app:cardCornerRadius="20dp">
-
-
-    </com.google.android.material.card.MaterialCardView>
 
     <Button
         android:id="@+id/btnToBmi"
