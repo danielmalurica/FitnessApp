@@ -1,15 +1,19 @@
 package com.example.fitnessapplication.FitnessApp.UsersActivities.HomePage;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +22,7 @@ import com.example.fitnessapplication.FitnessApp.UsersActivities.Charts.Evolutio
 import com.example.fitnessapplication.FitnessApp.UsersActivities.ConsumedCalories.ListOfActivities;
 import com.example.fitnessapplication.FitnessApp.UsersActivities.DailyCalAndMacroReq.ListOfActivititiesActivity;
 import com.example.fitnessapplication.FitnessApp.UsersActivities.DailyCalAndMacroReq.MacrosClass;
+import com.example.fitnessapplication.FitnessApp.UsersActivities.SearchAndAddFood.FoodDetailsActivity;
 import com.example.fitnessapplication.FitnessApp.UsersActivities.SearchAndAddFood.SearchFoodActivity;
 import com.example.fitnessapplication.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -26,6 +31,7 @@ import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,15 +40,23 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 public class UserHomepageActivity extends AppCompatActivity {
 
     Button buttonToBmi, buttonJson, btnDailyCal, btnToActivities, btnToChart;
     Button btnAddFoodToBreakfast;
-    private DatabaseReference mDatabase;
+    Button btnTest;
+    ListView lvBreakfast;
+    ArrayList<FoodList> breakfastList;
+    FoodListAdapter foodListAdapter;
+    private DatabaseReference mDatabase, myRef;
+    int number = 0;
 
 
     @Override
@@ -82,6 +96,32 @@ public class UserHomepageActivity extends AppCompatActivity {
                 intent.putExtra("PERIOD_OF_DAY", "breakfast");
                 startActivity(intent);
                 finish();
+            }
+        });
+
+        myRef = FirebaseDatabase.getInstance().getReference("caloriesAndMacros");
+        lvBreakfast = findViewById(R.id.breakfastList);
+        breakfastList = new ArrayList<FoodList>();
+        btnTest = findViewById(R.id.testButton);
+
+
+        myRef.child(user.getUid()).child("consumption").child(currentDate).child("breakfast").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if(task.getResult().exists()){
+                    number = (int)task.getResult().getChildrenCount();
+                    for(int i=0; i< number; i++){
+                        FoodList foodList = new FoodList();
+                        foodList.setFoodName(task.getResult().child(String.valueOf(i)).child("foodName").getValue().toString());
+                        foodList.setCal(task.getResult().child(String.valueOf(i)).child("kcal").getValue().toString());
+                        breakfastList.add(foodList);
+                    }
+                    foodListAdapter = new FoodListAdapter(getApplicationContext(), breakfastList);
+                    lvBreakfast.setAdapter(foodListAdapter);
+                }
+                else {
+                    lvBreakfast.setAdapter(null);
+                }
             }
         });
 
