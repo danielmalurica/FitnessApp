@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.fitnessapplication.FitnessApp.Classes.User;
 import com.example.fitnessapplication.FitnessApp.UsersActivities.BMI.BmiUpdateDataActivity;
@@ -63,10 +64,11 @@ public class ListOfActivititiesActivity extends AppCompatActivity {
                         tvBmrHeight.setText(Double.toString(userData.getHeight()));
                         tvBmrWeight.setText(Double.toString(userData.getWeight()));
                     } else {
-                        Log.d(TAG, "No such document");
+                        Toast.makeText(ListOfActivititiesActivity.this, "No info about you!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ListOfActivititiesActivity.this, "Please complete in 'UPDATE DATA ABOUT ME' section", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Log.d(TAG, "get failed with ", task.getException());
+                    Toast.makeText(ListOfActivititiesActivity.this, "get failed with "+ task.getException().toString(), Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -85,7 +87,7 @@ public class ListOfActivititiesActivity extends AppCompatActivity {
             }
         });
 
-        btnBmrUpdateData =findViewById(R.id.bmrupdateData);
+        btnBmrUpdateData = findViewById(R.id.bmrupdateData);
         btnBmrUpdateData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

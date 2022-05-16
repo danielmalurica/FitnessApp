@@ -10,4 +10,6 @@
     <color name="background_color">#FFEB3B</color>
     <color name="second_color">#2c2c2c</color>
     <color name="orange_color">#FF4C4C</color>
+    <color name="blue">#0000FF</color>
+    <color name="grey">#808080</color>
 </resources>

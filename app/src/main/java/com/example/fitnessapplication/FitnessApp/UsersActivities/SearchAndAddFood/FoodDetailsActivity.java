@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.fitnessapplication.FitnessApp.Classes.AddToConsumption;
 import com.example.fitnessapplication.FitnessApp.Classes.FoodModel;
 import com.example.fitnessapplication.FitnessApp.Classes.FoodNutrients;
 import com.example.fitnessapplication.FitnessApp.UsersActivities.DailyCalAndMacroReq.MacrosClass;
@@ -105,10 +106,11 @@ public class FoodDetailsActivity extends AppCompatActivity {
         user = FirebaseAuth.getInstance().getCurrentUser();
 
         btnAddToDiary = findViewById(R.id.saveToDiary);
+        AddToConsumption addToConsumption = new AddToConsumption();
         btnAddToDiary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
+                /*String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
                 myRef.child(user.getUid()).child("consumption").child(currentDate).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DataSnapshot> task) {
@@ -136,27 +138,22 @@ public class FoodDetailsActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<DataSnapshot> task) {
                         if(task.getResult().exists()){
                             id = task.getResult().getChildrenCount();
-                            Map<String, String> values = new HashMap<>();
-                            values.put("foodName", tvFoodName.getText().toString());
-                            values.put("kcal", tvEnergy.getText().toString());
-                            values.put("protein", tvProtein.getText().toString());
-                            values.put("fat", tvFat.getText().toString());
-                            values.put("carbs", tvCarbs.getText().toString());
-                            myRef.child(user.getUid()).child("consumption").child(currentDate).child(period).child(String.valueOf(id)).setValue(values);
+                            putValuesForBreakfast(currentDate, period);
                         } else {
-                            Map<String, String> values = new HashMap<>();
-                            values.put("foodName", tvFoodName.getText().toString());
-                            values.put("kcal", tvEnergy.getText().toString());
-                            values.put("protein", tvProtein.getText().toString());
-                            values.put("fat", tvFat.getText().toString());
-                            values.put("carbs", tvCarbs.getText().toString());
-                            myRef.child(user.getUid()).child("consumption").child(currentDate).child(period).child(String.valueOf(id)).setValue(values);
+                          putValuesForBreakfast(currentDate, period);
                         }
 
                     }
                 });
 
                 Intent intent = new Intent(getApplicationContext(), UserHomepageActivity.class);
+                startActivity(intent);*/
+                double energy = Double.parseDouble(tvEnergy.getText().toString());
+                double carbs = Double.parseDouble(tvCarbs.getText().toString());
+                double fat = Double.parseDouble(tvFat.getText().toString());
+                double protein = Double.parseDouble(tvProtein.getText().toString());
+                addToConsumption.addDataToConsumption(myRef, user, energy, carbs, fat, protein, period, macrosClass, tvFoodName, tvEnergy, tvProtein, tvFat, tvCarbs);
+                Intent intent = new Intent(FoodDetailsActivity.this, UserHomepageActivity.class);
                 startActivity(intent);
             }
         });
@@ -171,5 +168,15 @@ public class FoodDetailsActivity extends AppCompatActivity {
             }
         }
         return null;
+    }
+
+    private void putValuesForBreakfast(String currentDate, String period){
+        Map<String, String> values = new HashMap<>();
+        values.put("foodName", tvFoodName.getText().toString());
+        values.put("kcal", tvEnergy.getText().toString());
+        values.put("protein", tvProtein.getText().toString());
+        values.put("fat", tvFat.getText().toString());
+        values.put("carbs", tvCarbs.getText().toString());
+        myRef.child(user.getUid()).child("consumption").child(currentDate).child(period).child(String.valueOf(id)).setValue(values);
     }
 }

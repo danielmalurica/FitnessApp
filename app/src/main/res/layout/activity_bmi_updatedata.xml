@@ -7,6 +7,7 @@
     android:background="@color/background_color"
     tools:context=".FitnessApp.UsersActivities.BMI.BmiUpdateDataActivity">
 
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,42 +19,42 @@
         android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
         android:id="@+id/centerVerticalLine"/>
-    
-    <RelativeLayout
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_toStartOf="@id/centerVerticalLine"
-        android:background="@drawable/maleandfemalenotfocus"
-        android:layout_above="@+id/heightLayout"
-        android:layout_marginBottom="35dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:id="@+id/maleLayout">
 
-        <ImageView
-            android:layout_width="170px"
-            android:layout_height="170px"
-            android:layout_above="@+id/textFemale"
-            android:layout_marginBottom="20dp"
-            android:src="@drawable/male"
-            android:layout_centerInParent="true">
+        <RelativeLayout
+            android:id="@+id/maleLayout"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_above="@+id/heightLayout"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="35dp"
+            android:layout_toStartOf="@id/centerVerticalLine"
+            android:background="@drawable/maleandfemalenotfocus">
 
-        </ImageView>
+            <ImageView
+                android:layout_width="170px"
+                android:layout_height="170px"
+                android:layout_above="@+id/textFemale"
+                android:layout_centerInParent="true"
+                android:layout_marginBottom="20dp"
+                android:src="@drawable/male">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:id="@+id/textFemale"
-            android:text="Male"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="10dp"
-            android:textAlignment="center" />
+            </ImageView>
+
+            <TextView
+                android:id="@+id/textFemale"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="10dp"
+                android:text="Male"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
 
-    </RelativeLayout>
+        </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="150dp"
@@ -284,15 +285,29 @@
     </RelativeLayout>
 
     <Button
+        android:id="@+id/saveUpdatedData"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/ageLayout"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/rounded_button_orange"
+        android:text="Save Data"
+        android:textSize="15sp" />
+
+
+    <Button
         android:id="@+id/calculateBmi"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/saveUpdatedData"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="20dp"
-        android:layout_marginBottom="15dp"
         android:background="@drawable/rounded_button_orange"
         android:text="Calculate my BMI"
         android:textSize="15sp" />
 
 </RelativeLayout>
+

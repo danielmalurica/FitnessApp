@@ -26,6 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:padding="20dp"
+            android:id="@+id/relativeLayout"
             android:background="#383838">
 
             <TextView
@@ -64,5 +65,15 @@
                 android:textSize="30dp"/>
 
         </RelativeLayout>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/infoblue"
+            android:id="@+id/bmiInfo"
+            android:layout_below="@+id/relativeLayout"
+            android:layout_centerHorizontal="true"/>
     </RelativeLayout>
+
+
 </RelativeLayout>

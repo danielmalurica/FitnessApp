@@ -5,7 +5,6 @@ plugins {
 
 android {
     compileSdkVersion 29
-    buildToolsVersion "29.0.3"
 
     defaultConfig {
         applicationId "com.example.fitnessapplication"
@@ -51,6 +50,7 @@ dependencies {
     implementation 'com.github.TutorialsAndroid:KAlertDialog:v4.0.19'
     implementation 'com.google.code.gson:gson:2.9.0'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
-    compile 'com.github.gastricspark:scrolldatepicker:0.0.1'
+    implementation 'com.github.gastricspark:scrolldatepicker:0.0.1'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    implementation 'com.squareup.picasso:picasso:2.71828'
 }

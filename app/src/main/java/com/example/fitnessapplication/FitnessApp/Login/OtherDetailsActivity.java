@@ -5,6 +5,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.fitnessapplication.FitnessApp.Classes.User;
+import com.example.fitnessapplication.FitnessApp.UsersActivities.BMI.BmiUserDataActivity;
 import com.example.fitnessapplication.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -127,6 +129,8 @@ public class OtherDetailsActivity extends AppCompatActivity {
                             @Override
                             public void onSuccess(Void unused) {
                                 Toast.makeText(OtherDetailsActivity.this, "Data added!", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(getApplicationContext(), BmiUserDataActivity.class);
+                                startActivity(intent);
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {

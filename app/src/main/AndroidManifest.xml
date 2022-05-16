@@ -12,6 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FitnessApplication">
         <activity
+            android:name=".FitnessApp.UsersActivities.GenerateMealPlan.MealDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FitnessApp.UsersActivities.GenerateMealPlan.MealPlanResult"
+            android:exported="false" />
+        <activity
+            android:name=".FitnessApp.UsersActivities.GenerateMealPlan.MealPlanGenerator"
+            android:exported="false" />
+        <activity
             android:name=".FitnessApp.UsersActivities.Charts.EvolutionByMonth"
             android:exported="false" />
         <activity
