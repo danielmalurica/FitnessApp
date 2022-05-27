@@ -36,7 +36,7 @@ public class ActivityDataService {
     }
 
     public void getListOfActivities(int intensityLevel, VolleyResponseListener volleyResponseListener){
-        String url = "https://fitness-calculator.p.rapidapi.com/activities?intensitylevel=" + 7;
+        String url = "https://fitness-calculator.p.rapidapi.com/activities?intensitylevel=" + intensityLevel;
         List<ActivityModel> listOfActivities = new ArrayList<>();
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
@@ -81,6 +81,56 @@ public class ActivityDataService {
         };
         MySingleton.getInstance(context).addToRequestQueue(jsonObjectRequest);
     }
+
+    public void getAllListsOfActivities(VolleyResponseListener volleyResponseListener){
+        List<ActivityModel> listOfActivities = new ArrayList<>();
+        for(int i=1; i<=7; i++){
+            String url = "https://fitness-calculator.p.rapidapi.com/activities?intensitylevel=" + i;
+
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                    (Request.Method.GET,  url, null, new Response.Listener<JSONObject>() {
+
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                JSONArray data = response.getJSONArray("data");
+                                for(int i=0; i<data.length(); i++){
+                                    JSONObject activity = (JSONObject) data.get(i);
+                                    ActivityModel activityModel = new ActivityModel();
+                                    activityModel.setId(activity.getString("id"));
+                                    activityModel.setActivityTitle(activity.getString("activity"));
+                                    activityModel.setMetValue(activity.getInt("metValue"));
+                                    activityModel.setDescription(activity.getString("description"));
+                                    activityModel.setIntensityLevel(activity.getInt("intensityLevel"));
+                                    listOfActivities.add(activityModel);
+                                }
+
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            volleyResponseListener.onResponse(listOfActivities);
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show();
+                            volleyResponseListener.onError("Something wrong!");
+                        }
+                    }) {
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    Map<String, String> params = new HashMap<>();
+                    params.put("x-rapidapi-host", "fitness-calculator.p.rapidapi.com");
+                    params.put("x-rapidapi-key", "77d3a01ee9msh48590f165204cadp191ad0jsn682012a648d9");
+
+                    return params;
+                }
+            };
+            MySingleton.getInstance(context).addToRequestQueue(jsonObjectRequest);
+        }
+    }
+
 
     public interface VolleyResponseListenerForConsumedCal {
         void onError(String message);

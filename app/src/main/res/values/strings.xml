@@ -36,6 +36,16 @@
         <item>Day</item>
         <item>Week</item>
     </string-array>
+
+    <string-array name="intensityActivityLevel">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+    </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="URL_FOR_FOOD"><![CDATA[https://api.nal.usda.gov/fdc/v1/foods/search?api_key=Tv9PgEGWmPcfjKcBtv6TJeWuYOWwHLcfrEFjHuPJ&query=]]></string>

@@ -24,6 +24,7 @@ import com.example.fitnessapplication.FitnessApp.UsersActivities.ConsumedCalorie
 import com.example.fitnessapplication.FitnessApp.UsersActivities.DailyCalAndMacroReq.ListOfActivititiesActivity;
 import com.example.fitnessapplication.FitnessApp.UsersActivities.DailyCalAndMacroReq.MacrosClass;
 import com.example.fitnessapplication.FitnessApp.UsersActivities.GenerateMealPlan.MealPlanGenerator;
+import com.example.fitnessapplication.FitnessApp.UsersActivities.IdealWeight.IdealWeightActivity;
 import com.example.fitnessapplication.FitnessApp.UsersActivities.SearchAndAddFood.FoodDetailsActivity;
 import com.example.fitnessapplication.FitnessApp.UsersActivities.SearchAndAddFood.SearchFoodActivity;
 import com.example.fitnessapplication.R;
@@ -53,7 +54,7 @@ import java.util.Map;
 
 public class UserHomepageActivity extends AppCompatActivity {
 
-    Button buttonToBmi, btnDailyCal, btnToActivities, btnToChart, btnToGenPlan;
+    Button buttonToBmi, btnDailyCal, btnToActivities, btnToChart, btnToGenPlan, btnToIdealWeight;
     Button btnAddFoodToBreakfast, btnAddFoodToLunch, btnAddFoodToDinner, btnAddFoodToSnack;
     ListView lvBreakfast, lvLunch, lvDinner, lvSnack;
     ArrayList<FoodList> breakfastList, lunchList, dinnerList, snackList;
@@ -211,6 +212,15 @@ public class UserHomepageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), MealPlanGenerator.class);
+                startActivity(intent);
+            }
+        });
+
+        btnToIdealWeight = findViewById(R.id.toIdealWeight);
+        btnToIdealWeight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), IdealWeightActivity.class);
                 startActivity(intent);
             }
         });

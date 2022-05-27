@@ -16,6 +16,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.fitnessapplication.FitnessApp.Classes.CaloriesRequirements;
 import com.example.fitnessapplication.FitnessApp.Classes.MySingleton;
+import com.example.fitnessapplication.FitnessApp.UsersActivities.IdealWeight.IdealWeight;
 
 import org.json.JSONArray;
 import org.json.JSONException;

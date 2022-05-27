@@ -1,7 +1,7 @@
 package com.example.fitnessapplication.FitnessApp.Classes;
 
 public class User {
-    private String id;
+    private String uid;
     private String email;
     private String name;
     private  int age;
@@ -9,8 +9,8 @@ public class User {
     private int height;
     private String gender;
 
-    public User(String id, String email, String name, int age, int weight, int height, String gender) {
-        this.id = id;
+    public User(String uid, String email, String name, int age, int weight, int height, String gender) {
+        this.uid = uid;
         this.email = email;
         this.name = name;
         this.age = age;
@@ -22,12 +22,12 @@ public class User {
     public User() {
     }
 
-    public String getId() {
-        return id;
+    public String getUid() {
+        return uid;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
     public String getEmail() {
@@ -76,5 +76,18 @@ public class User {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "uid='" + uid + '\'' +
+                ", email='" + email + '\'' +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", weight=" + weight +
+                ", height=" + height +
+                ", gender='" + gender + '\'' +
+                '}';
     }
 }

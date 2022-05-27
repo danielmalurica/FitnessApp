@@ -48,8 +48,6 @@ public class OtherDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_other_details);
 
-        LocalDate localDate = LocalDate.now();
-
         textViewName = findViewById(R.id.edtName);
         textViewAge = findViewById(R.id.edtAge);
         textViewWeight = findViewById(R.id.edtWeight);
@@ -113,7 +111,7 @@ public class OtherDetailsActivity extends AppCompatActivity {
 
                 User user = new User(userId, userEmail, textViewName.getText().toString(), Integer.parseInt(textViewAge.getText().toString()), Integer.parseInt(textViewWeight.getText().toString()), Integer.parseInt(textViewHeight.getText().toString()), spinner.getSelectedItem().toString());
                 Map<String, Object> userOtherInfo = new HashMap<>();
-                userOtherInfo.put("uid", user.getId());
+                userOtherInfo.put("uid", user.getUid());
                 userOtherInfo.put("name", user.getName());
                 userOtherInfo.put("email", user.getEmail());
                 userOtherInfo.put("age", user.getAge());
