@@ -27,6 +27,7 @@ import com.example.fitnessapplication.FitnessApp.UsersActivities.GenerateMealPla
 import com.example.fitnessapplication.FitnessApp.UsersActivities.IdealWeight.IdealWeightActivity;
 import com.example.fitnessapplication.FitnessApp.UsersActivities.SearchAndAddFood.FoodDetailsActivity;
 import com.example.fitnessapplication.FitnessApp.UsersActivities.SearchAndAddFood.SearchFoodActivity;
+import com.example.fitnessapplication.FitnessApp.UsersActivities.WaterConsumption.WaterConsumptionActivity;
 import com.example.fitnessapplication.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -54,7 +55,7 @@ import java.util.Map;
 
 public class UserHomepageActivity extends AppCompatActivity {
 
-    Button buttonToBmi, btnDailyCal, btnToActivities, btnToChart, btnToGenPlan, btnToIdealWeight;
+    Button buttonToBmi, btnDailyCal, btnToActivities, btnToChart, btnToGenPlan, btnToIdealWeight, btnToWaterConsumption;
     Button btnAddFoodToBreakfast, btnAddFoodToLunch, btnAddFoodToDinner, btnAddFoodToSnack;
     ListView lvBreakfast, lvLunch, lvDinner, lvSnack;
     ArrayList<FoodList> breakfastList, lunchList, dinnerList, snackList;
@@ -221,6 +222,15 @@ public class UserHomepageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), IdealWeightActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnToWaterConsumption = findViewById(R.id.toWaterConsumption);
+        btnToWaterConsumption.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), WaterConsumptionActivity.class);
                 startActivity(intent);
             }
         });

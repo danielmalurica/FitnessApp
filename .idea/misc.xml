@@ -6,7 +6,12 @@
         <entry key="..\:/Users/danie/OneDrive/Desktop/FitnessApplication/app/src/main/res/layout/activity_food_list.xml" value="0.21" />
         <entry key="..\:/Users/danie/OneDrive/Desktop/FitnessApplication/app/src/main/res/layout/list_item.xml" value="0.10916919959473151" />
         <entry key="..\:/Users/danie/OneDrive/Desktop/Licenta 2022/FitnessApplication/app/src/main/res/drawable/background_white.xml" value="0.22" />
+        <entry key="..\:/Users/danie/OneDrive/Desktop/Licenta 2022/FitnessApplication/app/src/main/res/drawable/cardbackground.xml" value="0.22" />
+        <entry key="..\:/Users/danie/OneDrive/Desktop/Licenta 2022/FitnessApplication/app/src/main/res/drawable/ic_baseline_more_vert_24.xml" value="0.22" />
+        <entry key="..\:/Users/danie/OneDrive/Desktop/Licenta 2022/FitnessApplication/app/src/main/res/drawable/rounded_button_black.xml" value="0.22" />
+        <entry key="..\:/Users/danie/OneDrive/Desktop/Licenta 2022/FitnessApplication/app/src/main/res/drawable/rounded_button_orange.xml" value="0.1055" />
         <entry key="..\:/Users/danie/OneDrive/Desktop/Licenta 2022/FitnessApplication/app/src/main/res/drawable/searchview_background.xml" value="0.207" />
+        <entry key="..\:/Users/danie/OneDrive/Desktop/Licenta 2022/FitnessApplication/app/src/main/res/layout/activity_add_specialist.xml" value="0.2115036231884058" />
         <entry key="..\:/Users/danie/OneDrive/Desktop/Licenta 2022/FitnessApplication/app/src/main/res/layout/activity_admin_homepage.xml" value="0.2115036231884058" />
         <entry key="..\:/Users/danie/OneDrive/Desktop/Licenta 2022/FitnessApplication/app/src/main/res/layout/activity_bmi_calculator.xml" value="0.15" />
         <entry key="..\:/Users/danie/OneDrive/Desktop/Licenta 2022/FitnessApplication/app/src/main/res/layout/activity_bmi_result.xml" value="0.1" />
@@ -26,15 +31,24 @@
         <entry key="..\:/Users/danie/OneDrive/Desktop/Licenta 2022/FitnessApplication/app/src/main/res/layout/activity_other_details.xml" value="0.15" />
         <entry key="..\:/Users/danie/OneDrive/Desktop/Licenta 2022/FitnessApplication/app/src/main/res/layout/activity_result.xml" value="0.22" />
         <entry key="..\:/Users/danie/OneDrive/Desktop/Licenta 2022/FitnessApplication/app/src/main/res/layout/activity_search_food.xml" value="0.14" />
+        <entry key="..\:/Users/danie/OneDrive/Desktop/Licenta 2022/FitnessApplication/app/src/main/res/layout/activity_search_specialist_list.xml" value="0.2115036231884058" />
         <entry key="..\:/Users/danie/OneDrive/Desktop/Licenta 2022/FitnessApplication/app/src/main/res/layout/activity_select_goal.xml" value="0.10833333333333334" />
         <entry key="..\:/Users/danie/OneDrive/Desktop/Licenta 2022/FitnessApplication/app/src/main/res/layout/activity_sign_in.xml" value="0.1" />
         <entry key="..\:/Users/danie/OneDrive/Desktop/Licenta 2022/FitnessApplication/app/src/main/res/layout/activity_sign_up.xml" value="0.1109375" />
+        <entry key="..\:/Users/danie/OneDrive/Desktop/Licenta 2022/FitnessApplication/app/src/main/res/layout/activity_specialist_homepage.xml" value="0.2115036231884058" />
         <entry key="..\:/Users/danie/OneDrive/Desktop/Licenta 2022/FitnessApplication/app/src/main/res/layout/activity_user_homepage.xml" value="0.22178988326848248" />
+        <entry key="..\:/Users/danie/OneDrive/Desktop/Licenta 2022/FitnessApplication/app/src/main/res/layout/activity_water_consumption.xml" value="0.2115036231884058" />
+        <entry key="..\:/Users/danie/OneDrive/Desktop/Licenta 2022/FitnessApplication/app/src/main/res/layout/bottom_sheet_dialog_layout_change_water_limit.xml" value="0.2115036231884058" />
+        <entry key="..\:/Users/danie/OneDrive/Desktop/Licenta 2022/FitnessApplication/app/src/main/res/layout/drink_water_notification.xml" value="0.2115036231884058" />
+        <entry key="..\:/Users/danie/OneDrive/Desktop/Licenta 2022/FitnessApplication/app/src/main/res/layout/drink_water_notification_expanded.xml" value="0.2115036231884058" />
+        <entry key="..\:/Users/danie/OneDrive/Desktop/Licenta 2022/FitnessApplication/app/src/main/res/layout/drink_water_notification_normal.xml" value="0.2115036231884058" />
         <entry key="..\:/Users/danie/OneDrive/Desktop/Licenta 2022/FitnessApplication/app/src/main/res/layout/fragment_food_list.xml" value="0.12" />
         <entry key="..\:/Users/danie/OneDrive/Desktop/Licenta 2022/FitnessApplication/app/src/main/res/layout/fragment_food_list_list.xml" value="0.1" />
         <entry key="..\:/Users/danie/OneDrive/Desktop/Licenta 2022/FitnessApplication/app/src/main/res/layout/list_item.xml" value="0.22" />
         <entry key="..\:/Users/danie/OneDrive/Desktop/Licenta 2022/FitnessApplication/app/src/main/res/layout/list_item_activities.xml" value="0.15" />
         <entry key="..\:/Users/danie/OneDrive/Desktop/Licenta 2022/FitnessApplication/app/src/main/res/layout/list_item_food.xml" value="0.25" />
+        <entry key="..\:/Users/danie/OneDrive/Desktop/Licenta 2022/FitnessApplication/app/src/main/res/layout/list_item_specialist.xml" value="0.2115036231884058" />
+        <entry key="..\:/Users/danie/OneDrive/Desktop/Licenta 2022/FitnessApplication/app/src/main/res/menu/water_consumption_menu.xml" value="0.33" />
       </map>
     </option>
   </component>

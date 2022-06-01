@@ -14,22 +14,18 @@ import com.example.fitnessapplication.R;
 
 public class AdminHomepageActivity extends AppCompatActivity {
 
-    int userId;
     Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_homepage);
-        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("userDetails", Context.MODE_PRIVATE);
-        userId = sharedPreferences.getInt("userId", -1);
 
         button = findViewById(R.id.button);
-
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), BmiUpdateDataActivity.class));
+                startActivity(new Intent(getApplicationContext(), AddSpecialistActivity.class));
             }
         });
     }

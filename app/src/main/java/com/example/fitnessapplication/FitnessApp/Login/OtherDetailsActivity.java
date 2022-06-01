@@ -137,7 +137,6 @@ public class OtherDetailsActivity extends AppCompatActivity {
                                 Toast.makeText(OtherDetailsActivity.this, "Error!", Toast.LENGTH_SHORT).show();
                             }
                         });
-
             }
         });
 

@@ -12,6 +12,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FitnessApplication">
         <activity
+            android:name=".FitnessApp.SpelialistsPanel.SpecialistHomepageActivity"
+            android:exported="false"
+            android:noHistory="true"/>
+        <activity
+            android:name=".FitnessApp.AdminPanel.AddSpecialistActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FitnessApp.UsersActivities.Specialists.SearchSpecialistList"
+            android:exported="false" />
+        <activity
+            android:name=".FitnessApp.UsersActivities.WaterConsumption.WaterConsumptionActivity"
+            android:exported="false"
+            android:parentActivityName=".FitnessApp.UsersActivities.HomePage.UserHomepageActivity"/>
+        <activity
             android:name=".FitnessApp.UsersActivities.IdealWeight.IdealWeightActivity"
             android:exported="false" />
         <activity
